@@ -1,0 +1,266 @@
+kubeTargetVersionOverride: "1.20.5"
+defaultRules:
+  create: false
+
+global:
+  rbac:
+    create: true
+    pspEnabled: false
+
+alertmanager:
+  enabled: false
+grafana:
+  enabled: true
+  defaultDashboardsEnabled: false
+  defaultDashboardsTimezone: cst
+  adminPassword: prom-operator
+
+  ingress:
+    enabled: true
+    annotations: {}
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+      - monitor.dev.21vianet.com
+    path: /
+    tls:
+    - secretName: monitor-general-tls
+      hosts:
+      - monitor.dev.21vianet.com
+
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+
+      multicluster:
+        global:
+          enabled: false
+        etcd:
+          enabled: false
+      provider:
+        allowUiUpdates: false
+    datasources:
+      enabled: true
+      defaultDatasourceEnabled: false
+
+      ## URL of prometheus datasource
+      ##
+      # url: http://prometheus-stack-prometheus:9090/
+
+      # If not defined, will use prometheus.prometheusSpec.scrapeInterval or its default
+      # defaultDatasourceScrapeInterval: 15s
+
+      ## Annotations for Grafana datasource configmaps
+      ##
+      annotations: {}
+
+      ## Create datasource for each Pod of Prometheus StatefulSet;
+      ## this uses headless service `prometheus-operated` which is
+      ## created by Prometheus Operator
+      ## ref: https://git.io/fjaBS
+      createPrometheusReplicasDatasources: false
+      label: grafana_datasource
+
+
+  ## Configure additional grafana datasources (passed through tpl)
+  ## ref: http://docs.grafana.org/administration/provisioning/#datasources
+  additionalDataSources: []
+  # - name: prometheus-sample
+  #   access: proxy
+  #   basicAuth: true
+  #   basicAuthPassword: pass
+  #   basicAuthUser: daco
+  #   editable: false
+  #   jsonData:
+  #       tlsSkipVerify: true
+  #   orgId: 1
+  #   type: prometheus
+  #   url: https://{{ printf "%s-prometheus.svc" .Release.Name }}:9090
+  #   version: 1
+
+
+kubeApiServer:
+  enabled: false
+kubelet:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+coreDns:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeStateMetrics:
+  enabled: false
+nodeExporter:
+  enabled: false
+prometheusOperator:
+  enabled: true
+  tls:
+    enabled: true
+    tlsMinVersion: VersionTLS13
+    internalPort: 10250
+  admissionWebhooks:
+    failurePolicy: Fail
+    enabled: false
+
+  namespaces: 
+    releaseNamespace: true
+  kubeletService:
+    enabled: false
+  resources: 
+    limits:
+      cpu: 4
+      memory: 4096Mi
+    requests:
+      cpu: 2
+      memory: 2048Mi
+  image:
+    repository: harbor.dev.21vianet.com/library/prometheus-operator
+    tag: v0.52.1
+    prometheusDefaultBaseImage: harbor.dev.21vianet.com/library/prometheus
+    alertmanagerDefaultBaseImage: harbor.dev.21vianet.com/library/alertmanager
+  prometheusConfigReloader:
+    image:
+      repository: harbor.dev.21vianet.com/library/prometheus-config-reloader
+      tag: v0.52.1
+  thanosImage:
+    repository: harbor.dev.21vianet.com/library/thanos
+    tag: v0.23.1
+
+prometheus:
+  enabled: true
+  thanosService:
+    enabled: false
+  service:
+    port: 9090
+    targetPort: 9090
+    type: ClusterIP
+  servicePerReplica:
+    enabled: false
+  podDisruptionBudget:
+    enabled: false
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+      - prometheus.dev.21vianet.com
+    paths: 
+      - /
+    pathType: Prefix
+    tls: 
+      - secretName: monitor-general-tls
+        hosts:
+          - prometheus.dev.21vianet.com
+
+  prometheusSpec:
+    disableCompaction: false
+    apiserverConfig: {}
+    scrapeInterval: ""
+    scrapeTimeout: "15s"
+    enableAdminAPI: false
+    web: {}
+    image:
+      repository: harbor.dev.21vianet.com/library/prometheus
+      tag: v2.31.1
+    alertingEndpoints: []
+    # - name: ""
+    #   namespace: ""
+    #   port: http
+    #   scheme: http
+    #   pathPrefix: ""
+    #   tlsConfig: {}
+    #   bearerTokenFile: ""
+    #   apiVersion: v2
+
+    externalUrl: "https://prometheus.dev.21vianet.com"
+    retention: 365d
+    retentionSize: "200GB"
+    walCompression: false
+    paused: false
+    replicas: 1
+    shards: 1
+    logLevel: info
+    logFormat: logfmt
+    routePrefix: /
+    resources:
+      requests:
+        memory: 4096Mi
+        cpu: 4
+      limits:
+        memory: 4096Mi
+        cpu: 4
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: csi-rbd-sc
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 300Gi
+    additionalScrapeConfigs: []
+    # - job_name: kube-etcd
+    #   kubernetes_sd_configs:
+    #     - role: node
+    #   scheme: https
+    #   tls_config:
+    #     ca_file:   /etc/prometheus/secrets/etcd-client-cert/etcd-ca
+    #     cert_file: /etc/prometheus/secrets/etcd-client-cert/etcd-client
+    #     key_file:  /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
+    #   relabel_configs:
+    #   - action: labelmap
+    #     regex: __meta_kubernetes_node_label_(.+)
+    #   - source_labels: [__address__]
+    #     action: replace
+    #     targetLabel: __address__
+    #     regex: ([^:;]+):(\d+)
+    #     replacement: ${1}:2379
+    #   - source_labels: [__meta_kubernetes_node_name]
+    #     action: keep
+    #     regex: .*mst.*
+    #   - source_labels: [__meta_kubernetes_node_name]
+    #     action: replace
+    #     targetLabel: node
+    #     regex: (.*)
+    #     replacement: ${1}
+    #   metric_relabel_configs:
+    #   - regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone)
+    #     action: labeldrop
+
+    ## If additional scrape configurations are already deployed in a single secret file you can use this section.
+    ## Expected values are the secret name and key
+    ## Cannot be used with additionalScrapeConfigs
+    additionalScrapeConfigsSecret: {}
+      # enabled: false
+      # name:
+      # key:
+
+    additionalAlertManagerConfigs: []
+    # - consul_sd_configs:
+    #   - server: consul.dev.test:8500
+    #     scheme: http
+    #     datacenter: dev
+    #     tag_separator: ','
+    #     services:
+    #       - metrics-prometheus-alertmanager
+    additionalAlertManagerConfigsSecret: {}
+      # name:
+      # key:
+    additionalAlertRelabelConfigs: []
+    # - separator: ;
+    #   regex: prometheus_replica
+    #   replacement: $1
+    #   action: labeldrop
