@@ -153,7 +153,6 @@ prometheus:
     enabled: true
     ingressClassName: traefik
     annotations:
-      kubernetes.io/ingress.class: traefik
       traefik.ingress.kubernetes.io/buffering: |
         maxRequestBodyBytes = 0
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
