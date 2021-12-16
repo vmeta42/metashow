@@ -30,7 +30,9 @@ grafana:
     - secretName: monitor-general-tls
       hosts:
       - monitor.dev.21vianet.com
-
+  image:
+    repository: harbor.dev.21vianet.com/library/grafana
+    tag: 8.3.2
   sidecar:
     image:
       repository: harbor.dev.21vianet.com/library/k8s-sidecar
