@@ -17,7 +17,7 @@ grafana:
 
   ingress:
     enabled: true
-    annotations: {}
+    annotations:
       kubernetes.io/ingress.class: traefik
       traefik.ingress.kubernetes.io/buffering: |
         maxRequestBodyBytes = 0
