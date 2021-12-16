@@ -32,6 +32,9 @@ grafana:
       - monitor.dev.21vianet.com
 
   sidecar:
+    image:
+      repository: harbor.dev.21vianet.com/library/k8s-sidecar
+      tag: 1.14.2
     dashboards:
       enabled: true
       label: grafana_dashboard
