@@ -113,6 +113,8 @@ prometheusOperator:
 
   namespaces: 
     releaseNamespace: true
+    additional:
+    - kube-system
   kubeletService:
     enabled: false
   resources: 
