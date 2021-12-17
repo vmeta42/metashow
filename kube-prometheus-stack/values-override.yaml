@@ -211,7 +211,7 @@ prometheus:
           resources:
             requests:
               storage: 300Gi
-    configMaps: ["monitor"]
+    configMaps: ["monitor-kube-prometheus-st"]
     additionalScrapeConfigs:
     - job_name: dev/alertmanager/0
       honor_labels: false
