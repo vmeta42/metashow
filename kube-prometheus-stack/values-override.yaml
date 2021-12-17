@@ -50,23 +50,8 @@ grafana:
         allowUiUpdates: false
     datasources:
       enabled: true
-      defaultDatasourceEnabled: false
-
-      ## URL of prometheus datasource
-      ##
-      # url: http://prometheus-stack-prometheus:9090/
-
-      # If not defined, will use prometheus.prometheusSpec.scrapeInterval or its default
-      # defaultDatasourceScrapeInterval: 15s
-
-      ## Annotations for Grafana datasource configmaps
-      ##
-      annotations: {}
-
-      ## Create datasource for each Pod of Prometheus StatefulSet;
-      ## this uses headless service `prometheus-operated` which is
-      ## created by Prometheus Operator
-      ## ref: https://git.io/fjaBS
+      defaultDatasourceEnabled: true
+      defaultDatasourceScrapeInterval: 30s
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
 
@@ -178,11 +163,13 @@ prometheus:
       - secretName: monitor-general-tls
         hosts:
           - prometheus.dev.21vianet.com
-
+  additionalConfigs:
+    dev-config: ""
+    prod-config: ""
   prometheusSpec:
     disableCompaction: false
     apiserverConfig: {}
-    scrapeInterval: ""
+    scrapeInterval: "30s"
     scrapeTimeout: "15s"
     enableAdminAPI: false
     web: {}
@@ -224,35 +211,82 @@ prometheus:
           resources:
             requests:
               storage: 300Gi
-    additionalScrapeConfigs: []
-    # - job_name: kube-etcd
-    #   kubernetes_sd_configs:
-    #     - role: node
-    #   scheme: https
-    #   tls_config:
-    #     ca_file:   /etc/prometheus/secrets/etcd-client-cert/etcd-ca
-    #     cert_file: /etc/prometheus/secrets/etcd-client-cert/etcd-client
-    #     key_file:  /etc/prometheus/secrets/etcd-client-cert/etcd-client-key
-    #   relabel_configs:
-    #   - action: labelmap
-    #     regex: __meta_kubernetes_node_label_(.+)
-    #   - source_labels: [__address__]
-    #     action: replace
-    #     targetLabel: __address__
-    #     regex: ([^:;]+):(\d+)
-    #     replacement: ${1}:2379
-    #   - source_labels: [__meta_kubernetes_node_name]
-    #     action: keep
-    #     regex: .*mst.*
-    #   - source_labels: [__meta_kubernetes_node_name]
-    #     action: replace
-    #     targetLabel: node
-    #     regex: (.*)
-    #     replacement: ${1}
-    #   metric_relabel_configs:
-    #   - regex: (kubernetes_io_hostname|failure_domain_beta_kubernetes_io_region|beta_kubernetes_io_os|beta_kubernetes_io_arch|beta_kubernetes_io_instance_type|failure_domain_beta_kubernetes_io_zone)
-    #     action: labeldrop
-
+    configMaps: ["monitor"]
+    additionalScrapeConfigs:
+    - job_name: dev/alertmanager/0
+      honor_labels: false
+      kubernetes_sd_configs:
+      - role: endpoints
+        kubeconfig_file: /etc/prometheus/configmaps/dev-config
+        namespaces:
+          names:
+          - monitoring
+      scrape_interval: 30s
+      relabel_configs:
+      - source_labels:
+        - job
+        target_label: __tmp_prometheus_job_name
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_alertmanager
+        regex: main
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_component
+        regex: alert-router
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_name
+        regex: alertmanager
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_part_of
+        regex: kube-prometheus
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_endpoint_port_name
+        regex: web
+      - source_labels:
+        - __meta_kubernetes_endpoint_address_target_kind
+        - __meta_kubernetes_endpoint_address_target_name
+        separator: ;
+        regex: Node;(.*)
+        replacement: ${1}
+        target_label: node
+      - source_labels:
+        - __meta_kubernetes_endpoint_address_target_kind
+        - __meta_kubernetes_endpoint_address_target_name
+        separator: ;
+        regex: Pod;(.*)
+        replacement: ${1}
+        target_label: pod
+      - source_labels:
+        - __meta_kubernetes_namespace
+        target_label: namespace
+      - source_labels:
+        - __meta_kubernetes_service_name
+        target_label: service
+      - source_labels:
+        - __meta_kubernetes_pod_name
+        target_label: pod
+      - source_labels:
+        - __meta_kubernetes_pod_container_name
+        target_label: container
+      - source_labels:
+        - __meta_kubernetes_service_name
+        target_label: job
+        replacement: ${1}
+      - target_label: endpoint
+        replacement: web
+      - source_labels:
+        - __address__
+        target_label: __tmp_hash
+        modulus: 1
+        action: hashmod
+      - source_labels:
+        - __tmp_hash
+        regex: 0
+        action: keep
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
