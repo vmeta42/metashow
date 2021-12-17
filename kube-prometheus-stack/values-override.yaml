@@ -223,6 +223,84 @@ prometheus:
           - monitoring
       scrape_interval: 30s
       relabel_configs:
+      - target_label: target_cluster
+        replacement: dev
+      - source_labels:
+        - job
+        target_label: __tmp_prometheus_job_name
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_alertmanager
+        regex: main
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_component
+        regex: alert-router
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_name
+        regex: alertmanager
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_service_label_app_kubernetes_io_part_of
+        regex: kube-prometheus
+      - action: keep
+        source_labels:
+        - __meta_kubernetes_endpoint_port_name
+        regex: web
+      - source_labels:
+        - __meta_kubernetes_endpoint_address_target_kind
+        - __meta_kubernetes_endpoint_address_target_name
+        separator: ;
+        regex: Node;(.*)
+        replacement: ${1}
+        target_label: node
+      - source_labels:
+        - __meta_kubernetes_endpoint_address_target_kind
+        - __meta_kubernetes_endpoint_address_target_name
+        separator: ;
+        regex: Pod;(.*)
+        replacement: ${1}
+        target_label: pod
+      - source_labels:
+        - __meta_kubernetes_namespace
+        target_label: namespace
+      - source_labels:
+        - __meta_kubernetes_service_name
+        target_label: service
+      - source_labels:
+        - __meta_kubernetes_pod_name
+        target_label: pod
+      - source_labels:
+        - __meta_kubernetes_pod_container_name
+        target_label: container
+      - source_labels:
+        - __meta_kubernetes_service_name
+        target_label: job
+        replacement: ${1}
+      - target_label: endpoint
+        replacement: web
+      - source_labels:
+        - __address__
+        target_label: __tmp_hash
+        modulus: 1
+        action: hashmod
+      - source_labels:
+        - __tmp_hash
+        regex: 0
+        action: keep
+    - job_name: production/alertmanager/0
+      honor_labels: false
+      kubernetes_sd_configs:
+      - role: endpoints
+        kubeconfig_file: /etc/prometheus/configmaps/monitor-kube-prometheus-st/prod-config
+        namespaces:
+          names:
+          - monitoring
+      scrape_interval: 30s
+      relabel_configs:
+      - target_label: target_cluster
+        replacement: production
       - source_labels:
         - job
         target_label: __tmp_prometheus_job_name
