@@ -219,7 +219,7 @@ prometheus:
           resources:
             requests:
               storage: 300Gi
-    configMaps: [""]
+    configMaps: []
     additionalScrapeConfigs: {}
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
