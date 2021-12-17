@@ -217,7 +217,7 @@ prometheus:
       honor_labels: false
       kubernetes_sd_configs:
       - role: endpoints
-        kubeconfig_file: /etc/prometheus/configmaps/dev-config
+        kubeconfig_file: /etc/prometheus/configmaps/monitor-kube-prometheus-st/dev-config
         namespaces:
           names:
           - monitoring
