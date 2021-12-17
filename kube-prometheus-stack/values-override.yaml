@@ -245,3 +245,16 @@ prometheus:
     #   regex: prometheus_replica
     #   replacement: $1
     #   action: labeldrop
+    ## Thanos configuration allows configuring various aspects of a Prometheus server in a Thanos environment.
+    ## This section is experimental, it may change significantly without deprecation notice in any release.
+    ## This is experimental and may change significantly without backward compatibility in any release.
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#thanosspec
+    ##
+    thanos:
+      resources:
+        requests:
+          memory: 4096Mi
+          cpu: 4
+        limits:
+          memory: 4096Mi
+          cpu: 4
