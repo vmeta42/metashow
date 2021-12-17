@@ -114,7 +114,14 @@ prometheusOperator:
     internalPort: 10250
   admissionWebhooks:
     failurePolicy: Fail
-    enabled: false
+    enabled: true
+    patch:
+      enabled: true
+      image:
+        repository: harbor.dev.21vianet.com/library/kube-webhook-certgen
+        tag: v1.0
+        sha: ""
+        pullPolicy: IfNotPresent
 
   namespaces: 
     releaseNamespace: true
