@@ -137,7 +137,15 @@ prometheusOperator:
 prometheus:
   enabled: true
   thanosService:
-    enabled: false
+    enabled: true
+    type: ClusterIP
+    portName: grpc
+    port: 10901
+    targetPort: "grpc"
+    httpPortName: http
+    httpPort: 10902
+    targetHttpPort: "http"
+    clusterIP: "None"
   service:
     port: 9090
     targetPort: 9090
