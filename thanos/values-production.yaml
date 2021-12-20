@@ -14,7 +14,7 @@ objstoreConfig: |
     bucket: thanos
     endpoint: {{ include "thanos.minio.fullname" . }}:9000
     access_key: admin
-    secret_key: "test"
+    secret_key: "{{.Values.minio.auth.rootPassword }}"
     insecure: true
 indexCacheConfig: |
   type: IN-MEMORY
