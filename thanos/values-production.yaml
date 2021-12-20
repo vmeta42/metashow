@@ -195,7 +195,7 @@ minio:
       - ReadWriteOnce
     size: 300Gi
   livenessProbe:
-    enabled: true
+    enabled: false
     initialDelaySeconds: 25
     periodSeconds: 5
     timeoutSeconds: 5
