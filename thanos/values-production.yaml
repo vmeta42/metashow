@@ -187,8 +187,13 @@ minio:
   image:
     registry: docker.io
     repository: library/minio
-    tag: 2021.12.10-debian-10-r0
+    # tag: 2021.12.10-debian-10-r0
+    tag: debug2
     debug: true
+  command:
+  - bash
+  - -c
+  - sleep 6000
   persistence:
     enabled: true
     mountPath: /data
