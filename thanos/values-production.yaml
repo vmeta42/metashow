@@ -8,12 +8,20 @@ image:
   repository: library/thanos
   tag: 0.23.1-scratch-r4
 
-objstoreConfig: ""
-indexCacheConfig: ""
+objstoreConfig: |
+  type: s3
+  config:
+    bucket: thanos
+    endpoint: {{ include "thanos.minio.fullname" . }}:9000
+    access_key: admin
+    secret_key: "test"
+    insecure: true
+indexCacheConfig: |
+  type: IN-MEMORY
+  config:
+    max_size: "2048MB"
+    max_item_size: ""
 bucketCacheConfig: ""
-existingObjstoreSecret: ""
-existingObjstoreSecretItems: []
-existingServiceAccount: ""
 
 query:
   enabled: true
@@ -167,7 +175,7 @@ minio:
   enabled: true
   auth:
     rootUser: admin
-    rootPassword: "21Vianet@1220"
+    rootPassword: "test"
   defaultBuckets: 'thanos'
 networkPolicy:
   enabled: false
