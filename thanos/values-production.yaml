@@ -201,5 +201,8 @@ minio:
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
+  extraEnvVars:
+  - name: BITNAMI_DEBUG
+    value: "true"
 networkPolicy:
   enabled: false
