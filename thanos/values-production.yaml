@@ -1,0 +1,120 @@
+global:
+  imageRegistry: "harbor.dev.21vianet.com"
+  storageClass: "csi-rbd-sc"
+kubeVersion: "1.20.5"
+
+image:
+  registry: docker.io
+  repository: library/thanos
+  tag: 0.23.1-scratch-r4
+
+objstoreConfig: ""
+indexCacheConfig: ""
+bucketCacheConfig: ""
+existingObjstoreSecret: ""
+existingObjstoreSecretItems: []
+existingServiceAccount: ""
+
+query:
+  enabled: true
+  dnsDiscovery:
+    enabled: false
+  stores: []
+  sdConfig: ""
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 4
+      memory: 4096Mi
+    requests:
+      cpu: 4
+      memory: 4096Mi
+  grpc:
+    server:
+      tls:
+        enabled: false
+    client:
+      tls:
+        enabled: false
+  ingress:
+    enabled: false
+
+queryFrontend:
+  enabled: true
+  config: ""
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 4
+      memory: 4096Mi
+    requests:
+      cpu: 4
+      memory: 4096Mi
+  service:
+    type: ClusterIP
+    ports:
+      http: 9090
+  ingress:
+    enabled: true
+    hostname: prometheus.dev.21vianet.com
+    ingressClassName: "traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    secrets: ["monitor-general-tls"]
+    tls: true
+    path: /
+    pathType: Prefix
+
+bucketweb:
+  enabled: false
+compactor:
+  enabled: false
+storegateway:
+  enabled: true
+  config: ""
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 2
+      memory: 4096Mi
+    requests:
+      cpu: 2
+      memory: 4096Mi
+  service:
+    type: ClusterIP
+    ports:
+      http: 9090
+      grpc: 10901
+  persistence:
+    enabled: true
+    storageClass: "csi-rbd-sc"
+    size: 8Gi
+  ingress:
+    enabled: false
+  sharded:
+    enabled: false
+ruler:
+  enabled: false
+receive:
+  enabled: false
+receiveDistributor:
+  enabled: false
+metrics:
+  enabled: false
+volumePermissions:
+  enabled: true
+  image:
+    registry: docker.io
+    repository: bitnami/bitnami-shell
+    tag: 10-debian-10-r278
+minio:
+  enabled: true
+  auth:
+    rootUser: admin
+    rootPassword: "21Vianet@1220"
+  defaultBuckets: 'thanos'
+networkPolicy:
+  enabled: false
