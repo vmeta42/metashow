@@ -187,25 +187,22 @@ minio:
   image:
     registry: docker.io
     repository: library/minio
-    # tag: 2021.12.10-debian-10-r0
-    tag: debug2
+    tag: 2021.12.10-debian-10-r0
     debug: true
-  command:
-  - bash
-  - -c
-  - sleep 6000
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+    runAsUser: 1001
   persistence:
     enabled: true
     mountPath: /data
     accessModes:
       - ReadWriteOnce
     size: 300Gi
-  livenessProbe:
-    enabled: false
-    initialDelaySeconds: 25
-    periodSeconds: 5
-    timeoutSeconds: 5
-    successThreshold: 1
-    failureThreshold: 5
+  volumePermissions:
+    enabled: true
+    image:
+      repository: library/bitnami-shell
+      tag: 10-debian-10-r278
 networkPolicy:
   enabled: false
