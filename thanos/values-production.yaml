@@ -188,7 +188,7 @@ minio:
     repository: library/minio
     # tag: 2021.12.10-debian-10-r8
     debug: true
-    tag: debug2
+    tag: debug3
   podSecurityContext:
     enabled: true
     fsGroup: 1001
