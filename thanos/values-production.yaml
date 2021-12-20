@@ -186,12 +186,19 @@ minio:
       memory: 4096Mi
   image:
     repository: library/minio
-    tag: 2021.12.10-debian-10-r8
+    # tag: 2021.12.10-debian-10-r8
     debug: true
+    tag: debug2
   podSecurityContext:
     enabled: true
     fsGroup: 1001
     runAsUser: 1001
+  command:
+  - bash
+  - -c
+  - sleep 6000
+  livenessProbe:
+    enabled: false
   persistence:
     enabled: true
     mountPath: /data
