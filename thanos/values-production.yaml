@@ -188,6 +188,7 @@ minio:
     registry: docker.io
     repository: library/minio
     tag: 2021.12.10-debian-10-r0
+    debug: true
   persistence:
     enabled: true
     mountPath: /data
@@ -201,8 +202,5 @@ minio:
     timeoutSeconds: 5
     successThreshold: 1
     failureThreshold: 5
-  extraEnvVars:
-  - name: BITNAMI_DEBUG
-    value: "true"
 networkPolicy:
   enabled: false
