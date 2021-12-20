@@ -63,7 +63,60 @@ queryFrontend:
         maxRequestBodyBytes = 0
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       traefik.ingress.kubernetes.io/router.tls: "true"
-    secrets: ["monitor-general-tls"]
+    secrets:
+    - name: monitor-general-tls
+      key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDdjVyZK9WyjeDY
+        UsYezzUveK6Oh3I6ZbLvh+kR6zKVhgLgZMIwOml4Yn9X8wcRo4pOe9gNbiJ24Foz
+        Uhct83851yrjsZPxJiu3q/aQiaZ4n5fjNjrFSXaDRxri67SIK5h3ZLRV+1Nm2P4N
+        eAbhH3Qy4WUEqHSgIUT8iMuSuzzzI5S9vmgsHeyAgaEQj9M8NARjOM2CufRpkBzg
+        1vmBB/Bo7QsCpFsjGC9cCB55tTqxNqWyzX5vQJyHfzgKdYeuSiWualQh3ETgc67n
+        MfubF1dxxjk7cpBH2VMTFunckVnahUKYsk8BLqJEBxaTWPKwIECcSSeafSYMtdS+
+        fS7vLqyxAgMBAAECggEACuYhYAegA6CnJv0rceiPnT46mBhhri3Cl7X/6TnAy0pE
+        afWK+ARnm9x8lz8FYgDBlQrSnhaE64Qt68hmC4SnBZloKrtZo8tU6zwybPnYjqaL
+        Oko4qevrQJoG4JLn1qsOXRE/LdunRq/2D4OQExMRDE+6QHhpBFeepS21lgpP/UXz
+        Yb8KtvK6Whpu3Eh3m4oX1EbGS2ramDz5okdt43UW4fzKmhZkeu++RK3pM7N120dI
+        iPzXuq6ZS8jwxHahsfjru7/9Fp/T64uhHyFGBD0sJ6Fo0eNmd7amgbJP6vM6a12s
+        ldha7l8Ee2r2kc9SrHMWXyIq4f44V5xNPP/mYs8c4QKBgQD10JalMILNQhMtxUND
+        Ww0E3q3drWs0lhVoqhqpivNq5aP4SG2U2QFspUPJgU1iO0zAB9B9eGgVFX4Ry18D
+        FJaze2xPr1srYLJhIRzOPDHH3yqK+4RMBpLl1yuvL5tuC838+8fwAw5QLGagSqaW
+        5CJVheOqDY7St4FfRa1ZUQc54wKBgQDmu2obcLFAhxqF0WMfH+fXoJqdFBrRXf6v
+        MO8eLwPR0H4Ri8NGgGJCC46BTxAPMOZrC8CZdWP3DrrpeE6QnzXaAciXS//x2LlP
+        ddpTrq7mN/Z7zeNweWeZrEpi6bGGSAnbP8dfGAQkzBPqydEhDjvyiLIxoIkjOigB
+        HtXrAC3TWwKBgQCfAMXxJGf3jX4KZUcVEphhRgkBE2P9J/fBNAb7FD5QLyrZN0Bq
+        v9QECwLGHTWJDQKgVG2wO2pX+QcLS5mxzGeOwY9WG//FF09LNLgFTzqEJv7F19vD
+        sZzjv0MqlojbrhcYRWUXA2MGyTG5DZCkmfz7hRe2r/5qnvi4P8HZvGgIMQKBgG38
+        /yrPgJ97B+islOy8X9+JPssMT3Bot0S6NfKUhOSa183zawYLo0tKiQcZMlWbgOuc
+        cZZ1wE6AZhdvczw7uQcQfJeq8fpOzp+TVZ04k0VJfiUsU3RFW16FI/yc3DRf2Nr8
+        P0UUhL0pz4DH7fos9+S4xwEjPtxdF77Y/S6GKlIrAoGBANdACbWiCk5kn7Vh03FM
+        5ixVdpARe6QTwvY9T24FK2Fz0x1UXuGna5c6pUUCea8w6iCI2cqBFWMLWhVh9VPU
+        F7isG4GXIUfseleq4FgQPsohGJ9MQsrVAJJ5ebjGlx3fU8Bn6+W7sTVE92Q92W+y
+        qGq9+RsECj5naJleEFG41ysu
+        -----END PRIVATE KEY-----
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIDjTCCAnWgAwIBAgIUbCtohy6nYyGADdFIrAo0zaaoHe4wDQYJKoZIhvcNAQEL
+        BQAwUzELMAkGA1UEBhMCQ04xCzAJBgNVBAgMAkJKMQswCQYDVQQHDAJCSjETMBEG
+        A1UECgwKVm5ldCwgSW5jLjEVMBMGA1UEAwwMVm5ldCBSb290IENBMCAXDTIxMTIx
+        NjEwMTAzOVoYDzIxMjExMTIyMTAxMDM5WjBOMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CAwCQkoxCzAJBgNVBAcMAkJKMRMwEQYDVQQKDApWbmV0LCBJbmMuMRAwDgYDVQQD
+        DAdtb25pdG9yMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3Y1cmSvV
+        so3g2FLGHs81L3iujodyOmWy74fpEesylYYC4GTCMDppeGJ/V/MHEaOKTnvYDW4i
+        duBaM1IXLfN/Odcq47GT8SYrt6v2kImmeJ+X4zY6xUl2g0ca4uu0iCuYd2S0VftT
+        Ztj+DXgG4R90MuFlBKh0oCFE/IjLkrs88yOUvb5oLB3sgIGhEI/TPDQEYzjNgrn0
+        aZAc4Nb5gQfwaO0LAqRbIxgvXAgeebU6sTalss1+b0Cch384CnWHrkolrmpUIdxE
+        4HOu5zH7mxdXccY5O3KQR9lTExbp3JFZ2oVCmLJPAS6iRAcWk1jysCBAnEknmn0m
+        DLXUvn0u7y6ssQIDAQABo1wwWjBYBgNVHREEUTBPghhtb25pdG9yLmRldi4yMXZp
+        YW5ldC5jb22CG3Byb21ldGhldXMuZGV2LjIxdmlhbmV0LmNvbYIWYWxlcnQuZGV2
+        LjIxdmlhbmV0LmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAAzn5Rw7p0xL4hdPb3jBV
+        C0lVfLb3NJcPZ/hdD9h+vyspA2aemjJWooBOQDEmiZIGQUAUORGFvZYdFwlSVChT
+        e8Ad0fv1t07nHR5G/s6QihZJu7q0vBJHuzpJ2KEmnfIXb/YmXI+dFzPjUILSIT6R
+        sdCEvBZMotyAM4FWxuM6cLxkN0hMDsnQ2vyhyFHTPYHodnlAAsJGXfpUpl9gO8+/
+        wMn9540KVv6D2SCcOZ3VzxXM7Y41v7V/gySwwEAdcEX5VgACk9po9MqUp4rcrbLi
+        WmolaHWEQjX92PkR+D/IHByKSUVEC7KtVWQrrghXIl2+Fma3m6pxt9Byr9O0MeTo
+        KQ==
+        -----END CERTIFICATE-----
     tls: true
     path: /
     pathType: Prefix
