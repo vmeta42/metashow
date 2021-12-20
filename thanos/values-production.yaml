@@ -169,7 +169,7 @@ volumePermissions:
   enabled: true
   image:
     registry: docker.io
-    repository: bitnami/bitnami-shell
+    repository: library/bitnami-shell
     tag: 10-debian-10-r278
 minio:
   enabled: true
@@ -177,5 +177,9 @@ minio:
     rootUser: admin
     rootPassword: "test"
   defaultBuckets: 'thanos'
+  image:
+    registry: docker.io
+    repository: library/minio
+    tag: 2021.12.10-debian-10-r0
 networkPolicy:
   enabled: false
