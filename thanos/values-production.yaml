@@ -194,9 +194,8 @@ minio:
     fsGroup: 1001
     runAsUser: 1001
   command:
-  - bash
-  - -c
-  - sleep 6000
+  - /opt/bitnami/scripts/minio/entrypoint.sh
+  - /opt/bitnami/scripts/minio/run.sh
   livenessProbe:
     enabled: false
   persistence:
