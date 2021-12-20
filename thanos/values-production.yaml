@@ -185,9 +185,8 @@ minio:
       cpu: 2
       memory: 4096Mi
   image:
-    registry: docker.io
     repository: library/minio
-    tag: 2021.12.10-debian-10-r0
+    tag: 2021.12.10-debian-10-r8
     debug: true
   podSecurityContext:
     enabled: true
