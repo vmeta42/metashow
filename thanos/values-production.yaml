@@ -19,7 +19,7 @@ objstoreConfig: |
 indexCacheConfig: |
   type: IN-MEMORY
   config:
-    max_size: "2048MB"
+    max_size: "2048Mi"
     max_item_size: ""
 bucketCacheConfig: ""
 
