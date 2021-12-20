@@ -177,9 +177,29 @@ minio:
     rootUser: admin
     rootPassword: "test"
   defaultBuckets: 'thanos'
+  resources:
+    limits:
+      cpu: 2
+      memory: 4096Mi
+    requests:
+      cpu: 2
+      memory: 4096Mi
   image:
     registry: docker.io
     repository: library/minio
     tag: 2021.12.10-debian-10-r0
+  persistence:
+    enabled: true
+    mountPath: /data
+    accessModes:
+      - ReadWriteOnce
+    size: 300Gi
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 25
+    periodSeconds: 5
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 5
 networkPolicy:
   enabled: false
