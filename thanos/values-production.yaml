@@ -176,7 +176,7 @@ minio:
   auth:
     rootUser: admin
     rootPassword: "test"
-  defaultBuckets: 'thanos'
+  defaultBuckets: ''
   resources:
     limits:
       cpu: 2
