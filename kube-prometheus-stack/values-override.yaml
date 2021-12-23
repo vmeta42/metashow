@@ -11,7 +11,7 @@ alertmanager:
   enabled: false
 grafana:
   enabled: true
-  defaultDashboardsEnabled: false
+  defaultDashboardsEnabled: true
   defaultDashboardsTimezone: cst
   adminPassword: prom-operator
 
@@ -43,7 +43,7 @@ grafana:
 
       multicluster:
         global:
-          enabled: false
+          enabled: true
         etcd:
           enabled: false
       provider:
