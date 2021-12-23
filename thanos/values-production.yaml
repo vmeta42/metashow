@@ -277,5 +277,72 @@ minio:
         WmolaHWEQjX92PkR+D/IHByKSUVEC7KtVWQrrghXIl2+Fma3m6pxt9Byr9O0MeTo
         KQ==
         -----END CERTIFICATE-----
+  apiIngress:
+    enabled: true
+    ingressClassName: "traefik"
+    hostname: minitor-minio-api.dev.21vianet.com
+    path: /
+    pathType: Prefix
+    servicePort: minio-api
+    annotations:
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    tls: true
+    selfSigned: false
+    secrets:
+    - name: minio-api-tls
+      key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCytHAHWBltVB9D
+        9pAwKdU0/5ACFDqaAjXy8Igf93OkWIrMCU5z2+4CexolXh87eCg8vBob93accHlY
+        oUadKTwLPnoJcVOR48dpl1dTTcA5pXHtY5QiN5bzL8qY4+0odj6EUwM8rtMolkyu
+        o/TuiKP+lcjHsI2VgdJbe9q3dyN999w4xAcv/E740tDjm/ovzVREvoPWn8jEM9Yc
+        NDGyg4uTLcRqvtgvL/nhJQZcgg4ZgSEWZCZU+gHSyb0PbTHvmE3Ql20ues928DYO
+        yn+Z8jBUyHYP/A/ddqQyj7JjdYgcJyFHBqWXxw7bE04u2EIJbml8hscQXjxJUHT6
+        iPSqFdftAgMBAAECggEAAK3Q0yZRimnMaJyyNYyjI71o1akwA8/IVrD1Q3HUPaac
+        eGP8qVIHmHjRQ50U70vokzp/uuV4zOVcgKq0MvqqILzPB+QnViGQa2VIzqc3+MAZ
+        K7a6JFsjtq7SzTvodcPlPul11LAxWzEe/3beAl4AiYIWLjQMhanlm7VfwlywhNT/
+        n1aYjLt4qpmniD4ZqzoVeRebck06YMmlY1kVImbXZ+s7Ia5MsY+7QhGFxkcmd4Yk
+        jwQfJaTB3KH+O3m2isMoHfGGqLQTaRr1lJGutzB6+IJXB+ivNhYxamPnmy9DUD9H
+        3lSM2F6aYZOZYvDHfBl92Of75OF0uyIoNq4r6VlkPQKBgQDjan7vG9UoWt3bqPAz
+        drhj3A1VfwdoNAOk6EOSIzXo/ExN9NVKAtc/RneIvGQ578+bR5gM7Sqk04FHAV2F
+        1uzzXgdS8heLp0bQY1CknCN0onetZ1VDqYI0YUK6Kwu2NQbg2bPhgp4ulwvpntEQ
+        gGF+qGAfELl1vwM4M8qrmv4+owKBgQDJKpNYgyrado8J5bctMqc9VhqF002nfKEa
+        ly7Xm6pc7JZb0f/J8lXUg0GzStxKuw7+9jG28rQc2muOP3d+XuQGCg//ROKiNhe6
+        db5yQXYmoYvb7+JN+v4zll5zgIQJ7K8KVkY/iedVSTCOKQvllGJOJYud20zB0mJ4
+        kvEVHjPILwKBgQC+exv40Ro4Y+vCKf2PTZhiZBVzECQ3HqISxUybogxsqq6K+VCR
+        XlHGORK0H//fG0OL72qnIRt/1XxJ6hXYnc34hkCiNA6Otby1nQoV5oY4EkElqBCd
+        zOQ3VWPbpWR46G9rdE2bzJkLsw6STqkUJkQDH6rrOkntGuHqeE8Ab6EW+wKBgQDE
+        O84EV9+jwGeEJhvr8S+G+8lfpmJn8YFOaQ/+rxEfGIMMCuxUWRs09N1QQsRl+deF
+        CzAv4M2mH8MvveWY1oPlCEfWoaHazp2S/GzNE+JniMrfvz+pBiCWviZg0Yr8C3As
+        y0A3lxSc84p0AsJiL789sA5j7JsRr2Lzb5PRH+cvbQKBgQDY4td0veZkv4WblxS9
+        8Bc5bWsS6vuvLHmI5DMtNJwh3amDFJtEP+dCsu1tXqnkWpIZHKigzU7RBoT7k2nb
+        kujEbRErszBFr2e8ELTcUZODnx2KSSox8I8boDqXgGZAHImasiDWB/Xzo+OA1214
+        1caoDqIoPWxbJ5fXttI+891BoQ==
+        -----END PRIVATE KEY-----
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIDjDCCAnSgAwIBAgIUbCtohy6nYyGADdFIrAo0zaaoHfAwDQYJKoZIhvcNAQEL
+        BQAwUzELMAkGA1UEBhMCQ04xCzAJBgNVBAgMAkJKMQswCQYDVQQHDAJCSjETMBEG
+        A1UECgwKVm5ldCwgSW5jLjEVMBMGA1UEAwwMVm5ldCBSb290IENBMCAXDTIxMTIy
+        MzA2Mjk0MFoYDzIxMjExMTI5MDYyOTQwWjBUMQswCQYDVQQGEwJDTjELMAkGA1UE
+        CAwCQkoxCzAJBgNVBAcMAkJKMRMwEQYDVQQKDApWbmV0LCBJbmMuMRYwFAYDVQQD
+        DA1tb24tbWluaW8tYXBpMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+        srRwB1gZbVQfQ/aQMCnVNP+QAhQ6mgI18vCIH/dzpFiKzAlOc9vuAnsaJV4fO3go
+        PLwaG/d2nHB5WKFGnSk8Cz56CXFTkePHaZdXU03AOaVx7WOUIjeW8y/KmOPtKHY+
+        hFMDPK7TKJZMrqP07oij/pXIx7CNlYHSW3vat3cjfffcOMQHL/xO+NLQ45v6L81U
+        RL6D1p/IxDPWHDQxsoOLky3Ear7YLy/54SUGXIIOGYEhFmQmVPoB0sm9D20x75hN
+        0JdtLnrPdvA2Dsp/mfIwVMh2D/wP3XakMo+yY3WIHCchRwall8cO2xNOLthCCW5p
+        fIbHEF48SVB0+oj0qhXX7QIDAQABo1UwUzBRBgNVHREESjBIgiJtb25pdG9yLW1p
+        bmlvLWFwaS5kZXYuMjF2aWFuZXQuY29tgiJtaW5pby1tb25pdG9yLWFwaS5kZXYu
+        MjF2aWFuZXQuY29tMA0GCSqGSIb3DQEBCwUAA4IBAQAxIQejaorWHAne9mck+WRI
+        L72QQLkRzCcpAt8teEmOt0QDo9ri0v9EOHIk/JmI+lIgG4WFjdij9/s+6mmfjdYu
+        QlP5Xpfy7gYwhaXG7wEn1h+balYaCEZyT47Tcysgzcc9bjXNajt56ysF+o1X26HU
+        g5N70HjUZm7GbKcFG9fpPCCdCWn7LGg5yiK/desmduSBDwQ2k9VGvKWSo9NgOd//
+        vIU49V1C6KMPsSFNap6DoqXcJM+2qI3NK+5547vwH6B2OKxTbTzXxLErYou8KGkW
+        IPOL40ChVD/+0CceX9iRstoGsF73Va5pWz9Ro4l0wK7qq1ocVlWsgJmurdtUW6zX
+        -----END CERTIFICATE-----
 networkPolicy:
   enabled: false
