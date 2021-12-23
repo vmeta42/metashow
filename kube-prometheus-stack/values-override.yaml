@@ -40,7 +40,6 @@ grafana:
     dashboards:
       enabled: true
       label: grafana_dashboard
-
       multicluster:
         global:
           enabled: true
@@ -48,6 +47,7 @@ grafana:
           enabled: false
       provider:
         allowUiUpdates: false
+        folder: Kubernetes
     datasources:
       enabled: true
       defaultDatasourceEnabled: false
