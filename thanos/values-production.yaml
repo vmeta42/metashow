@@ -254,7 +254,7 @@ minio:
         HYIDXLjKEZmUi6OTjAFPrjziAw/78kQkagNXz4GN78bkKkf0q1LqgUM8BLSQQCNQ
         YHlphIWOAA7Dq79aSf6zVAM=
         -----END PRIVATE KEY-----
-    certificate: |
+      certificate: |
         -----BEGIN CERTIFICATE-----
         MIIDjTCCAnWgAwIBAgIUbCtohy6nYyGADdFIrAo0zaaoHe4wDQYJKoZIhvcNAQEL
         BQAwUzELMAkGA1UEBhMCQ04xCzAJBgNVBAgMAkJKMQswCQYDVQQHDAJCSjETMBEG
