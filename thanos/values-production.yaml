@@ -138,11 +138,11 @@ storegateway:
   replicaCount: 1
   resources:
     limits:
-      cpu: 2
-      memory: 4096Mi
+      cpu: 4
+      memory: 16Gi
     requests:
-      cpu: 2
-      memory: 4096Mi
+      cpu: 4
+      memory: 16Gi
   service:
     type: ClusterIP
     ports:
