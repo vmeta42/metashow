@@ -34,13 +34,13 @@ data:
         },
         "editable": false,
         "gnetId": null,
-        "graphTooltip": 1,
+        "graphTooltip": 0,
         "hideControls": false,
         "id": null,
         "links": [
 
         ],
-        "refresh": "30s",
+        "refresh": "",
         "rows": [
             {
                 "collapse": false,
