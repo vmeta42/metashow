@@ -14,7 +14,7 @@ grafana:
   defaultDashboardsEnabled: true
   defaultDashboardsTimezone: cst
   adminPassword: prom-operator
-  dashboard:
+  dashboards:
     test:
       k8s-test:
         json: |
