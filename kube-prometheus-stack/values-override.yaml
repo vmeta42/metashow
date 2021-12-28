@@ -24,6 +24,12 @@ grafana:
     accessModes:
       - ReadWriteOnce
     size: 10Gi
+  initChownData:
+    enabled: true
+    image:
+      repository: harbor.dev.21vianet.com/library/bitnami-shell
+      tag: "10-debian-10-r278"
+      pullPolicy: IfNotPresent
   dashboards:
     test:
       k8s-test:
