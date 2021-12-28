@@ -2670,8 +2670,7 @@ grafana:
                 ]
               },
               "timezone": "cst",
-              "title": "Kubernetes / Compute Resources / Cluster",
-              "uid": "efa86fd1d0c121a26444b636a3f509a8",
+              "title": "Test / Zabbix / Cluster",
               "version": 2,
               "weekStart": ""
             }
