@@ -24,6 +24,7 @@ bucketCacheConfig: ""
 
 query:
   enabled: true
+  replicaLabel: [prometheus_replica]
   dnsDiscovery:
     enabled: false
   stores: ["prometheus-k8s-0.prometheus-operated.monitoring:10901", "prometheus-k8s-1.prometheus-operated.monitoring:10901","172.22.150.25:30438","172.22.150.25:32525", "thanos-storegateway:10901"]
