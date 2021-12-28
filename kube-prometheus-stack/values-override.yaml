@@ -14,6 +14,9 @@ grafana:
   defaultDashboardsEnabled: true
   defaultDashboardsTimezone: cst
   adminPassword: prom-operator
+  downloadDashboardsImage:
+    repository: harbor.dev.21vianet.com/library/curl
+    tag: 7.73.0
   dashboards:
     test:
       k8s-test:
