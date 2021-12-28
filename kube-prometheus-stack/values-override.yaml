@@ -30,9 +30,30 @@ grafana:
       repository: harbor.dev.21vianet.com/library/bitnami-shell
       tag: "10-debian-10-r278"
       pullPolicy: IfNotPresent
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'ceph'
+        orgId: 1
+        folder: 'Ceph'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/ceph
+      - name: 'zabbix'
+        orgId: 1
+        folder: 'Zabbix'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/zabbix
+
   dashboards:
-    test:
-      k8s-test:
+    zabbix:
+      zabbix-test:
         json: |
             {
               "annotations": {
@@ -2690,7 +2711,7 @@ grafana:
         folder: Kubernetes
     datasources:
       enabled: true
-      defaultDatasourceEnabled: false
+      defaultDatasourceEnabled: true
       defaultDatasourceScrapeInterval: 30s
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
