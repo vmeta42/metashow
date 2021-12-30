@@ -14,7 +14,7 @@ grafana:
   defaultDashboardsEnabled: true
   defaultDashboardsTimezone: cst
   adminPassword: prom-operator
-  plugins: ["http://thanos-minio.kube-admin:9000/public/alexanderzobnin-zabbix-app-4.2.4.zip"]
+  plugins: ["http://thanos-minio.kube-admin:9000/public/alexanderzobnin-zabbix-app-4.2.4.zip;custom-plugins"]
   downloadDashboardsImage:
     repository: harbor.dev.21vianet.com/library/curl
     tag: 7.73.0
