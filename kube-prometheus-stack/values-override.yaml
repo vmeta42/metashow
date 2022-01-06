@@ -2759,7 +2759,7 @@ grafana:
       password: true
     version: 6
     readOnly: false
- -  name: Zabbix-5.4
+  - name: Zabbix-5.4
     access: proxy
     orgId: 1
     basicAuth: false
