@@ -54,8 +54,10 @@ grafana:
 
   dashboards:
     zabbix:
-      zabbix-server: dashboards/zabbix-server.json
-      zabbix-system-status: dashboards/zabbix-system-status.json
+      zabbix-server:
+        file: dashboards/zabbix-server.json
+      zabbix-system-status:
+        file: dashboards/zabbix-system-status.json
 
   ingress:
     enabled: true
