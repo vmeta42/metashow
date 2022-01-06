@@ -13,5 +13,5 @@ metadata:
     app: {{ template "kube-prometheus-stack.name" . }}-prometheus-scrape-custom-confg
 {{ include "kube-prometheus-stack.labels" . | indent 4 }}
 data:
-  additional-scrape-custom-configs.yaml: {{ tpl (toYaml ( $files.Get "customScrapes/additional-scrape-custom-configs.yaml" )) $ | b64enc | quote }}
+  additional-scrape-custom-configs.yaml: {{ $files.Get "customScrapes/additional-scrape-custom-configs.yaml" | b64enc | quote }}
 {{- end }}
