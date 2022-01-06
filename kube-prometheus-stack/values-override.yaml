@@ -2715,6 +2715,8 @@ grafana:
       defaultDatasourceScrapeInterval: 30s
       createPrometheusReplicasDatasources: false
       label: grafana_datasource
+    zabbix:
+      password: "test"
 
 
   ## Configure additional grafana datasources (passed through tpl)
@@ -2730,6 +2732,61 @@ grafana:
     type: prometheus
     url: http://thanos-query-frontend:9090
     version: 1
+  - name: Zabbix
+    access: proxy
+    orgId: 1
+    basicAuth: false
+    type: alexanderzobnin-zabbix-datasource
+    typeLogoUrl: ''
+    url: http://172.22.50.228/api_jsonrpc.php
+    password: ''
+    user: ''
+    database: ''
+    basicAuthUser: ''
+    basicAuthPassword: ''
+    withCredentials: false
+    isDefault: false
+    jsonData:
+      cacheTTL: ''
+      dbConnectionEnable: false
+      disableDataAlignment: false
+      trends: true
+      trendsFrom: ''
+      trendsRange: ''
+      username: admin
+      password: {{.Values.grafana.zabbix.password }}
+    secureJsonFields:
+      password: true
+    version: 6
+    readOnly: false
+ -  name: Zabbix-5.4
+    access: proxy
+    orgId: 1
+    basicAuth: false
+    type: alexanderzobnin-zabbix-datasource
+    typeLogoUrl: ''
+    url: http://172.22.50.138/api_jsonrpc.php
+    password: ''
+    user: ''
+    database: ''
+    basicAuthUser: ''
+    basicAuthPassword: ''
+    withCredentials: false
+    isDefault: false
+    jsonData:
+      cacheTTL: ''
+      disableDataAlignment: false
+      trends: true
+      trendsFrom: ''
+      trendsRange: ''
+      username: admin
+      password: {{.Values.grafana.zabbix.password }}
+    secureJsonFields:
+      password: true
+    version: 4
+    readOnly: false
+
+
 
 
 kubeApiServer:
