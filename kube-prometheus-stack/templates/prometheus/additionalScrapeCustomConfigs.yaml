@@ -1,0 +1,17 @@
+{{- if and .Values.prometheus.enabled .Values.prometheus.prometheusSpec.additionalScrapeConfigsSecret.enabled }}
+{{ $files := .Files }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ template "kube-prometheus-stack.fullname" . }}-prometheus-scrape-custom-confg
+  namespace: {{ template "kube-prometheus-stack.namespace" . }}
+{{- if .Values.prometheus.prometheusSpec.additionalPrometheusSecretsAnnotations }}
+  annotations:
+{{ toYaml .Values.prometheus.prometheusSpec.additionalPrometheusSecretsAnnotations | indent 4 }}
+{{- end }}
+  labels:
+    app: {{ template "kube-prometheus-stack.name" . }}-prometheus-scrape-custom-confg
+{{ include "kube-prometheus-stack.labels" . | indent 4 }}
+data:
+  additional-scrape-custom-configs.yaml: {{ tpl (toYaml ( $files.Get "customScrapes/additional-scrape-custom-configs.yaml" )) $ | b64enc | quote }}
+{{- end }}

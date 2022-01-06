@@ -317,14 +317,14 @@ prometheus:
             requests:
               storage: 300Gi
     configMaps: []
-    additionalScrapeConfigs: {}
+    additionalScrapeConfigs: []
     ## If additional scrape configurations are already deployed in a single secret file you can use this section.
     ## Expected values are the secret name and key
     ## Cannot be used with additionalScrapeConfigs
-    additionalScrapeConfigsSecret: {}
-      # enabled: false
-      # name:
-      # key:
+    additionalScrapeConfigsSecret:
+      enabled: true
+      name: monitor-kube-prometheus-st-prometheus-scrape-custom-confg
+      key: additional-scrape-custom-configs.yaml
 
     additionalAlertManagerConfigs: []
     # - consul_sd_configs:
