@@ -1,3 +1,20 @@
 - job_name: prometheus
   static_configs:
     - targets: ['localhost:9090']
+
+- job_name: 'test-exporter'
+  static_configs:
+  - targets: ['172.22.30.14:9283']
+  - targets: ['172.22.50.186:9128']
+
+- job_name: 'openstack-exporter'
+  static_configs:
+  - targets: ['172.22.130.29:9283']
+  - targets: ['172.22.50.186:8128']
+
+- job_name: 'node-exporter'
+  static_configs:
+  - targets: ['172.22.30.14:9100']
+  - targets: ['172.22.30.18:9100']
+  - targets: ['172.22.30.22:9100']
+  - targets: ['172.22.30.26:9100']
