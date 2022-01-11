@@ -59,8 +59,14 @@ grafana:
       zabbix-system-status:
         file: dashboards/zabbix-system-status.json
     ceph:
-      ceph-server:
-        file: dashboards/ceph.json
+      cluster:
+        file: dashboards/ceph/cluster.json
+      osds:    
+        file: dashboards/ceph/osds.json
+      pools:
+        file: dashboards/ceph/pools.json
+      node-exporter:
+        file: dashboards/ceph/node-exporter.json
 
   ingress:
     enabled: true
