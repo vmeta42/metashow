@@ -4,6 +4,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true`
   name: {{ template "grafana.fullname" $ }}-dashboards-{{ $provider }}
   namespace: {{ template "grafana.namespace" $ }}
   labels:
