@@ -34,7 +34,7 @@
   - targets: ['172.22.130.44:9100']
   - targets: ['172.22.130.43:9100']
 
- - job_name: 'b28-ceph(k8s)-node-exporter'
+- job_name: 'b28-ceph(k8s)-node-exporter'
   static_configs:
   - targets: ['172.22.130.14:9100']
   - targets: ['172.22.130.18:9100']
@@ -42,98 +42,97 @@
   - targets: ['172.22.130.41:9100']
  
  
-  - job_name: 'b28-openstack(test)-exporter'
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:
-    - targets: ['172.22.50.205:9180']
+- job_name: 'b28-openstack(test)-exporter'
+  scrape_interval: 120s
+  scrape_timeout: 120s
+  static_configs:
+  - targets: ['172.22.50.205:9180']
  
-   - job_name: 'b28-openstack-exporter'
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:    
-    - targets: ['172.22.50.205:8180']
-    
-   - job_name: 'openstack(test)-vms-exportor'
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:
-    - targets: ['172.22.50.56:9100']
-    - targets: ['172.22.50.54:9100']
-    - targets: ['172.22.50.51:9100']
-    - targets: ['172.22.50.68:9100']
-    - targets: ['172.22.50.65:9100']
-    - targets: ['172.22.50.95:9100']
-    - targets: ['172.22.50.60:9100']
-    - targets: ['172.22.50.78:9100']
-    - targets: ['172.22.50.92:9100']
-    - targets: ['172.22.50.79:9100']
-    - targets: ['172.22.50.77:9100']
-    - targets: ['172.22.50.55:9100']
-    - targets: ['172.22.50.63:9100']
-    - targets: ['172.22.50.82:9100']
-    - targets: ['172.22.50.80:9100']
-    - targets: ['172.22.50.70:9100']
-    - targets: ['172.22.50.58:9100']
-    - targets: ['172.22.50.71:9100']
-    - targets: ['172.22.50.59:9100']
-    - targets: ['172.22.50.76:9100']
-    - targets: ['172.22.50.69:9100']
-    - targets: ['172.22.50.52:9100']
-    - targets: ['172.22.50.67:9100']
-    - targets: ['172.22.50.86:9100']
-    - targets: ['172.22.50.62:9100']
-    - targets: ['172.22.50.72:9100']
-    - targets: ['172.22.50.61:9100']
-    - targets: ['172.22.50.66:9100']  
+- job_name: 'b28-openstack-exporter'
+  scrape_interval: 120s
+  scrape_timeout: 120s
+  static_configs:    
+  - targets: ['172.22.50.205:8180']
+   
+- job_name: 'openstack(test)-vms-exportor'
+  scrape_interval: 120s
+  scrape_timeout: 120s
+  static_configs:
+  - targets: ['172.22.50.56:9100']
+  - targets: ['172.22.50.54:9100']
+  - targets: ['172.22.50.51:9100']
+  - targets: ['172.22.50.68:9100']
+  - targets: ['172.22.50.65:9100']
+  - targets: ['172.22.50.95:9100']
+  - targets: ['172.22.50.60:9100']
+  - targets: ['172.22.50.78:9100']
+  - targets: ['172.22.50.92:9100']
+  - targets: ['172.22.50.79:9100']
+  - targets: ['172.22.50.77:9100']
+  - targets: ['172.22.50.55:9100']
+  - targets: ['172.22.50.63:9100']
+  - targets: ['172.22.50.82:9100']
+  - targets: ['172.22.50.80:9100']
+  - targets: ['172.22.50.70:9100']
+  - targets: ['172.22.50.58:9100']
+  - targets: ['172.22.50.71:9100']
+  - targets: ['172.22.50.59:9100']
+  - targets: ['172.22.50.76:9100']
+  - targets: ['172.22.50.69:9100']
+  - targets: ['172.22.50.52:9100']
+  - targets: ['172.22.50.67:9100']
+  - targets: ['172.22.50.86:9100']
+  - targets: ['172.22.50.62:9100']
+  - targets: ['172.22.50.72:9100']
+  - targets: ['172.22.50.61:9100']
+  - targets: ['172.22.50.66:9100']  
+  - targets: ['172.22.50.56:9177']
+  - targets: ['172.22.50.54:9177']
+  - targets: ['172.22.50.51:9177']
+  - targets: ['172.22.50.68:9177']
+  - targets: ['172.22.50.65:9177']
+  - targets: ['172.22.50.95:9177']
+  - targets: ['172.22.50.60:9177']
+  - targets: ['172.22.50.78:9177']
+  - targets: ['172.22.50.92:9177']
+  - targets: ['172.22.50.79:9177']
+  - targets: ['172.22.50.77:9177']
+  - targets: ['172.22.50.55:9177']
+  - targets: ['172.22.50.63:9177']
+  - targets: ['172.22.50.82:9177']
+  - targets: ['172.22.50.80:9177']
+  - targets: ['172.22.50.70:9177']
+  - targets: ['172.22.50.58:9177']
+  - targets: ['172.22.50.71:9177']
+  - targets: ['172.22.50.59:9177']
+  - targets: ['172.22.50.76:9177']
+  - targets: ['172.22.50.69:9177']
+  - targets: ['172.22.50.52:9177']
+  - targets: ['172.22.50.67:9177']
+  - targets: ['172.22.50.86:9177']
+  - targets: ['172.22.50.62:9177']
+  - targets: ['172.22.50.72:9177']
+  - targets: ['172.22.50.61:9177']
+  - targets: ['172.22.50.66:9177']
 
-    - targets: ['172.22.50.56:9177']
-    - targets: ['172.22.50.54:9177']
-    - targets: ['172.22.50.51:9177']
-    - targets: ['172.22.50.68:9177']
-    - targets: ['172.22.50.65:9177']
-    - targets: ['172.22.50.95:9177']
-    - targets: ['172.22.50.60:9177']
-    - targets: ['172.22.50.78:9177']
-    - targets: ['172.22.50.92:9177']
-    - targets: ['172.22.50.79:9177']
-    - targets: ['172.22.50.77:9177']
-    - targets: ['172.22.50.55:9177']
-    - targets: ['172.22.50.63:9177']
-    - targets: ['172.22.50.82:9177']
-    - targets: ['172.22.50.80:9177']
-    - targets: ['172.22.50.70:9177']
-    - targets: ['172.22.50.58:9177']
-    - targets: ['172.22.50.71:9177']
-    - targets: ['172.22.50.59:9177']
-    - targets: ['172.22.50.76:9177']
-    - targets: ['172.22.50.69:9177']
-    - targets: ['172.22.50.52:9177']
-    - targets: ['172.22.50.67:9177']
-    - targets: ['172.22.50.86:9177']
-    - targets: ['172.22.50.62:9177']
-    - targets: ['172.22.50.72:9177']
-    - targets: ['172.22.50.61:9177']
-    - targets: ['172.22.50.66:9177']
 
-
-   - job_name: 'openstack-vms-exportor'
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:
-    - targets: ['172.22.150.81:9100']
-    - targets: ['172.22.150.53:9100']
-    - targets: ['172.22.150.248:9100']
-    - targets: ['172.22.150.54:9100']
-    - targets: ['172.22.150.51:9100']
-    - targets: ['172.22.150.56:9100']
-    - targets: ['172.22.150.72:9100']
-    - targets: ['172.22.150.61:9100']
-    - targets: ['172.22.150.70:9100']
-    - targets: ['172.22.150.52:9100']
-    - targets: ['172.22.150.79:9100']
-    - targets: ['172.22.150.62:9100']
-    - targets: ['172.22.150.60:9100']
+- job_name: 'openstack-vms-exportor'
+  scrape_interval: 120s
+  scrape_timeout: 120s
+  static_configs:
+  - targets: ['172.22.150.81:9100']
+  - targets: ['172.22.150.53:9100']
+  - targets: ['172.22.150.248:9100']
+  - targets: ['172.22.150.54:9100']
+  - targets: ['172.22.150.51:9100']
+  - targets: ['172.22.150.56:9100']
+  - targets: ['172.22.150.72:9100']
+  - targets: ['172.22.150.61:9100']
+  - targets: ['172.22.150.70:9100']
+  - targets: ['172.22.150.52:9100']
+  - targets: ['172.22.150.79:9100']
+  - targets: ['172.22.150.62:9100']
+  - targets: ['172.22.150.60:9100']
 
 
 
