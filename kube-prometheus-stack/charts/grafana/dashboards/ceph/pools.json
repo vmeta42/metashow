@@ -8,21 +8,28 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "Ceph Pools dashboard (ceph-mgr, multi-cluster)",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 9552,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1641888558861,
+  "id": 94,
+  "iteration": 1641962867088,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -39,7 +46,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
       "error": false,
@@ -76,7 +82,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -99,9 +105,14 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_max_avail{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Avilable - {{ pool }}",
           "metric": "ceph_pool_available_bytes",
@@ -109,9 +120,14 @@
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_bytes_used{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Used - {{ pool }}",
           "metric": "ceph_pool",
@@ -119,9 +135,14 @@
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_bytes_used{job=\"$job\",pool_id=\"$pool\"} + ceph_pool_max_avail{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Total - {{ pool }}",
           "metric": "ceph_pool",
@@ -129,9 +150,14 @@
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_raw_bytes_used{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Raw - {{ pool }}",
           "metric": "ceph_pool",
@@ -140,9 +166,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Pool Storage",
       "tooltip": {
         "msResolution": false,
@@ -152,38 +176,29 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "bytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -227,7 +242,6 @@
         "y": 1
       },
       "id": 10,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -243,13 +257,19 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_bytes_used{job=\"$job\",pool_id=\"$pool\"} / (ceph_pool_bytes_used{job=\"$job\",pool_id=\"$pool\"} + ceph_pool_max_avail{job=\"$job\",pool_id=\"$pool\"})",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
+          "legendFormat": "",
           "refId": "A",
           "step": 60
         }
@@ -259,7 +279,6 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -276,7 +295,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
       "editable": true,
       "error": false,
       "fill": 1,
@@ -309,7 +327,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -319,36 +337,49 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_objects{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Objects - {{ pool }}",
           "refId": "A",
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_dirty{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Dirty Objects - {{ pool }}",
           "refId": "B",
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_pool_quota_objects{job=\"$job\",pool_id=\"$pool\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Quota Objects - {{ pool }}",
           "refId": "C"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Objects in Pool",
       "tooltip": {
         "msResolution": false,
@@ -358,33 +389,26 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -392,7 +416,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
       "error": false,
@@ -427,7 +450,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -437,19 +460,29 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "irate(ceph_pool_rd{job=\"$job\",pool_id=\"$pool\"}[1m])",
           "format": "time_series",
           "instant": false,
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Read - {{ pool }}",
           "refId": "B",
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "irate(ceph_pool_wr{job=\"$job\",pool_id=\"$pool\"}[1m])",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Write - {{ pool }}",
           "refId": "A",
@@ -457,9 +490,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "IOPS",
       "tooltip": {
         "msResolution": false,
@@ -469,9 +500,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -480,7 +509,6 @@
           "format": "none",
           "label": "IOPS",
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
@@ -488,14 +516,12 @@
           "format": "short",
           "label": "IOPS",
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": false
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -503,7 +529,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
       "decimals": 2,
       "editable": true,
       "error": false,
@@ -538,7 +563,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -548,18 +573,28 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "irate(ceph_pool_rd_bytes{job=\"$job\",pool_id=\"$pool\"}[1m])",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Read Bytes - {{ pool }}",
           "refId": "A",
           "step": 60
         },
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "irate(ceph_pool_wr_bytes{job=\"$job\",pool_id=\"$pool\"}[1m])",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Written Bytes - {{ pool }}",
           "refId": "B",
@@ -567,9 +602,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Throughput",
       "tooltip": {
         "msResolution": false,
@@ -579,38 +612,31 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "Bps",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "Bps",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 30,
+  "schemaVersion": 33,
   "style": "dark",
   "tags": [
     "ceph",
@@ -627,9 +653,6 @@
           "text": "30s",
           "value": "30s"
         },
-        "datasource": null,
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Interval",
@@ -708,16 +731,16 @@
         "type": "interval"
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
-          "text": "openstack2-ceph-exportor",
-          "value": "openstack2-ceph-exportor"
+          "selected": true,
+          "text": "test-exporter",
+          "value": "test-exporter"
         },
-        "datasource": "Prometheus",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Cluster",
@@ -738,16 +761,16 @@
         "useTags": false
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
+          "selected": true,
           "text": "1",
           "value": "1"
         },
-        "datasource": "Prometheus",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Pool",
@@ -770,7 +793,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -801,5 +824,6 @@
   "timezone": "browser",
   "title": "Ceph - Pools",
   "uid": "GguSB8Hnk",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
