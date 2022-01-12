@@ -43,6 +43,16 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/ceph
+
+      - name: 'openstack'
+        orgId: 1
+        folder: 'Openstack'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/openstack
+
       - name: 'zabbix'
         orgId: 1
         folder: 'Zabbix'
@@ -67,6 +77,12 @@ grafana:
         file: dashboards/ceph/pools.json
       node-exporter:
         file: dashboards/ceph/node-exporter.json
+    openstack:
+      cluster:
+        file: dashboards/openstack/cluster.json
+      vms:
+        file: dashboards/openstack/vms.json
+
 
   ingress:
     enabled: true
