@@ -43,7 +43,6 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/ceph
-
       - name: 'openstack'
         orgId: 1
         folder: 'Openstack'
@@ -52,7 +51,6 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/openstack
-
       - name: 'zabbix'
         orgId: 1
         folder: 'Zabbix'
