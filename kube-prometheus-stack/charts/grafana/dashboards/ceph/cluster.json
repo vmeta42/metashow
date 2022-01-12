@@ -8,21 +8,27 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "",
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1641887508987,
+  "id": 143,
+  "iteration": 1641962177080,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -35,7 +41,6 @@
       "type": "row"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -106,7 +111,7 @@
         "text": {},
         "textMode": "value"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -120,7 +125,6 @@
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -167,7 +171,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -181,7 +185,6 @@
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -228,7 +231,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -242,7 +245,6 @@
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -276,6 +278,7 @@
       },
       "id": 24,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -287,7 +290,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -301,7 +304,6 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -368,7 +370,7 @@
         },
         "textMode": "name"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -381,13 +383,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Mon",
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -432,7 +431,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -446,7 +445,6 @@
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -491,7 +489,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -505,7 +503,6 @@
       "type": "stat"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -550,7 +547,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -564,8 +561,6 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -628,14 +623,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
-      "repeat": null,
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
           "expr": "avg(ceph_paxos_refresh_latency_sum{job=\"$job\"}/ceph_paxos_refresh_latency_count{job=\"$job\"})",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
@@ -646,8 +640,6 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -692,7 +684,6 @@
         "y": 5
       },
       "id": 52,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -710,12 +701,12 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "expr": "avg(ceph_osd_apply_latency_ms{job=\"$job\"})",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
@@ -726,8 +717,6 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -772,7 +761,6 @@
         "y": 5
       },
       "id": 93,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -790,13 +778,13 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
           "expr": "avg(ceph_osd_commit_latency_ms{job=\"$job\"})",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
@@ -811,7 +799,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -844,7 +831,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -861,7 +848,7 @@
         {
           "expr": "ceph_pg_active{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Active",
           "refId": "M"
@@ -869,7 +856,7 @@
         {
           "expr": "ceph_pg_clean{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Clean",
           "refId": "U"
@@ -877,7 +864,7 @@
         {
           "expr": "ceph_pg_peering{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Peering",
           "refId": "I"
@@ -885,7 +872,7 @@
         {
           "expr": "ceph_pg_degraded{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Degraded",
           "refId": "B",
@@ -894,7 +881,7 @@
         {
           "expr": "ceph_pg_stale{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Stale",
           "refId": "C",
@@ -903,7 +890,7 @@
         {
           "expr": "ceph_unclean_pgs{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Unclean",
           "refId": "D",
@@ -912,7 +899,7 @@
         {
           "expr": "ceph_pg_undersized{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Undersized",
           "refId": "E",
@@ -921,7 +908,7 @@
         {
           "expr": "ceph_pg_incomplete{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Incomplete",
           "refId": "G"
@@ -929,7 +916,7 @@
         {
           "expr": "ceph_pg_forced_backfill{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Forced Backfill",
           "refId": "H"
@@ -937,7 +924,7 @@
         {
           "expr": "ceph_pg_inconsistent{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Inconsistent",
           "refId": "F"
@@ -945,7 +932,7 @@
         {
           "expr": "ceph_pg_forced_recovery{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Forced Recovery",
           "refId": "J"
@@ -953,7 +940,7 @@
         {
           "expr": "ceph_pg_creating{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Creating",
           "refId": "K"
@@ -961,7 +948,7 @@
         {
           "expr": "ceph_pg_wait_backfill{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Wait Backfill",
           "refId": "L"
@@ -969,7 +956,7 @@
         {
           "expr": "ceph_pg_deep{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Deep",
           "refId": "N"
@@ -977,7 +964,7 @@
         {
           "expr": "ceph_pg_scrubbing{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Scrubbing",
           "refId": "O"
@@ -985,7 +972,7 @@
         {
           "expr": "ceph_pg_recovering{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Recovering",
           "refId": "P"
@@ -993,7 +980,7 @@
         {
           "expr": "ceph_pg_repair{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Repair",
           "refId": "Q"
@@ -1001,7 +988,7 @@
         {
           "expr": "ceph_pg_down{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Down",
           "refId": "R"
@@ -1009,7 +996,7 @@
         {
           "expr": "ceph_pg_peered{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Peered",
           "refId": "S"
@@ -1017,7 +1004,7 @@
         {
           "expr": "ceph_pg_backfill{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Backfill",
           "refId": "T"
@@ -1025,7 +1012,7 @@
         {
           "expr": "ceph_pg_remapped{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Remapped",
           "refId": "V"
@@ -1033,16 +1020,14 @@
         {
           "expr": "ceph_pg_backfill_toofull{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Backfill Toofull",
           "refId": "W"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "PGs",
       "tooltip": {
         "msResolution": false,
@@ -1052,33 +1037,25 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1086,7 +1063,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1119,7 +1095,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1137,7 +1113,7 @@
         {
           "exemplar": true,
           "expr": "ceph_osds",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Total",
           "refId": "A",
@@ -1146,7 +1122,7 @@
         {
           "exemplar": true,
           "expr": "ceph_osds_in",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "In",
           "refId": "B",
@@ -1155,7 +1131,7 @@
         {
           "exemplar": true,
           "expr": "ceph_osds - ceph_osds_in",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Out",
           "refId": "C",
@@ -1164,7 +1140,7 @@
         {
           "exemplar": true,
           "expr": "sum(ceph_osd_up{cluster=\"$job\"})",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Up",
           "refId": "D",
@@ -1173,7 +1149,7 @@
         {
           "exemplar": true,
           "expr": "ceph_osds_down",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Down",
           "refId": "E",
@@ -1181,9 +1157,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "OSDs",
       "tooltip": {
         "msResolution": false,
@@ -1193,9 +1167,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1203,30 +1175,23 @@
         {
           "$$hashKey": "object:641",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "$$hashKey": "object:642",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1243,7 +1208,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -1272,12 +1236,13 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
+      "maxDataPoints": 500,
       "nullPointMode": "connected",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1287,25 +1252,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(irate(ceph_osd_op_r_out_bytes{job=\"$job\"}[$interval]))",
+          "expr": "sum(irate(ceph_osd_op_r_out_bytes{job=\"$job\"}[$__interval]))",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "read",
           "refId": "A",
           "step": 300
         },
         {
-          "expr": "sum(irate(ceph_osd_op_w_in_bytes{job=\"$job\"}[$interval]))",
+          "expr": "sum(irate(ceph_osd_op_w_in_bytes{job=\"$job\"}[$__interval]))",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "write",
           "refId": "B",
           "step": 300
         },
         {
-          "expr": "sum(irate(ceph_osd_op_rw_in_bytes{job=\"$job\"}[$interval]))",
+          "expr": "sum(irate(ceph_osd_op_rw_in_bytes{job=\"$job\"}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "overwrite",
@@ -1313,9 +1278,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Throughput",
       "tooltip": {
         "msResolution": false,
@@ -1325,9 +1288,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1335,25 +1296,20 @@
         {
           "$$hashKey": "object:175",
           "format": "decbytes",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "$$hashKey": "object:176",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1361,8 +1317,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "decimals": null,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1393,7 +1347,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 1,
       "points": false,
       "renderer": "flot",
@@ -1406,7 +1360,7 @@
           "exemplar": true,
           "expr": "1000*sum(increase(ceph_osd_op_r_latency_sum{job=\"$job\"}[1m]))/clamp_min(sum(increase(ceph_osd_op_r_latency_count{job=\"$job\"}[$__rate_interval])),1)",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 2,
           "legendFormat": "read",
           "metric": "ceph_osd_perf_apply_latency_seconds",
@@ -1416,7 +1370,7 @@
         {
           "expr": "1000*sum(increase(ceph_osd_op_w_latency_sum{job=\"$job\"}[1m]))/clamp_min(sum(increase(ceph_osd_op_w_latency_count{job=\"$job\"}[1m])),1)",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 2,
           "legendFormat": "write",
           "metric": "ceph_osd_perf_commit_latency_seconds",
@@ -1432,9 +1386,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "OSD Latency",
       "tooltip": {
         "shared": true,
@@ -1443,36 +1395,28 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "$$hashKey": "object:92",
-          "decimals": null,
           "format": "ms",
           "label": "",
           "logBase": 1,
-          "max": null,
           "min": "0",
           "show": true
         },
         {
           "$$hashKey": "object:93",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1486,7 +1430,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "decimals": 0,
       "editable": true,
       "error": false,
@@ -1516,12 +1459,13 @@
       "lines": true,
       "linewidth": 2,
       "links": [],
+      "maxDataPoints": 500,
       "nullPointMode": "connected",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1531,25 +1475,25 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(ceph_osd_op_r{job=\"$job\"}[$interval]))",
+          "expr": "sum(rate(ceph_osd_op_r{job=\"$job\"}[$__interval]))",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "read",
           "refId": "A",
           "step": 300
         },
         {
-          "expr": "sum(rate(ceph_osd_op_w{job=\"$job\"}[$interval]))",
+          "expr": "sum(rate(ceph_osd_op_w{job=\"$job\"}[$__interval]))",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "write",
           "refId": "B",
           "step": 300
         },
         {
-          "expr": "sum(rate(ceph_osd_op_rw{job=\"$job\"}[$interval]))",
+          "expr": "sum(rate(ceph_osd_op_rw{job=\"$job\"}[$__interval]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "overwrite",
@@ -1557,9 +1501,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "IOPS",
       "tooltip": {
         "msResolution": true,
@@ -1569,9 +1511,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -1581,23 +1521,19 @@
           "format": "none",
           "label": "",
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "$$hashKey": "object:429",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -1605,8 +1541,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "decimals": null,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1616,29 +1550,25 @@
         "y": 21
       },
       "hiddenSeries": false,
-      "id": 64,
+      "id": 98,
       "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "hideEmpty": false,
-        "max": true,
+        "avg": false,
+        "current": false,
+        "max": false,
         "min": false,
-        "rightSide": true,
         "show": true,
         "total": false,
-        "values": true
+        "values": false
       },
       "lines": true,
       "linewidth": 1,
-      "links": [],
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
-      "pointradius": 1,
+      "pluginVersion": "8.3.2",
+      "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [],
@@ -1647,20 +1577,20 @@
       "steppedLine": false,
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "exemplar": true,
           "expr": "ceph_mds_reply_latency_sum{job=\"$job\"}/ceph_mds_reply_latency_count{job=\"$job\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 2,
-          "legendFormat": "latency",
-          "metric": "ceph_monitor_latency_seconds",
-          "refId": "A",
-          "step": 10
+          "instant": false,
+          "interval": "$__interval",
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "MDS Latency",
       "tooltip": {
         "shared": true,
@@ -1669,37 +1599,27 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
-          "format": "s",
-          "label": null,
+          "format": "short",
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1714,66 +1634,7 @@
           },
           "mappings": []
         },
-        "overrides": [
-          {
-            "__systemRef": "hideSeriesFrom",
-            "matcher": {
-              "id": "byNames",
-              "options": {
-                "mode": "exclude",
-                "names": [
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.0\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.1\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.10\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.11\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.12\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.13\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.14\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.15\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.16\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.17\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.18\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.19\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.2\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.20\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.21\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.22\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.23\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.24\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.25\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.26\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.27\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.28\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.29\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.3\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.30\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.31\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.32\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.34\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.35\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.4\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.5\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.6\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.7\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.8\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}",
-                  "ceph_osd_op_r_latency_count{ceph_daemon=\"osd.9\", instance=\"b28r487cs04-in-f2:9283\", job=\"ceph-exportor\"}"
-                ],
-                "prefix": "All except:",
-                "readOnly": true
-              }
-            },
-            "properties": [
-              {
-                "id": "custom.hideFrom",
-                "value": {
-                  "legend": false,
-                  "tooltip": false,
-                  "viz": true
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -1781,7 +1642,7 @@
         "x": 0,
         "y": 28
       },
-      "id": 90,
+      "id": 96,
       "options": {
         "legend": {
           "displayMode": "list",
@@ -1799,9 +1660,12 @@
           "mode": "single"
         }
       },
-      "pluginVersion": "8.0.6",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
           "expr": "ceph_osd_op_r_latency_count{job=\"$job\"}",
           "interval": "",
@@ -1809,11 +1673,10 @@
           "refId": "A"
         }
       ],
-      "title": "osd_op_count",
+      "title": "osd count",
       "type": "piechart"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1864,14 +1727,10 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "osd_latency",
       "type": "piechart"
     },
     {
-      "cacheTimeout": null,
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1944,7 +1803,6 @@
         "y": 36
       },
       "id": 54,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -1963,7 +1821,7 @@
           "exemplar": true,
           "expr": "ceph_osd_commit_latency_ms{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
@@ -1974,8 +1832,6 @@
       "type": "timeseries"
     },
     {
-      "cacheTimeout": null,
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2048,7 +1904,6 @@
         "y": 36
       },
       "id": 94,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -2067,7 +1922,7 @@
           "exemplar": true,
           "expr": "ceph_osd_apply_latency_ms{job=\"$job\"}",
           "format": "time_series",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "",
           "refId": "A",
@@ -2078,7 +1933,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2159,7 +2013,6 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2244,7 +2097,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -2271,7 +2123,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2289,9 +2141,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "latency",
       "tooltip": {
         "shared": true,
@@ -2300,9 +2150,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -2310,30 +2158,22 @@
         {
           "$$hashKey": "object:283",
           "format": "ms",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:284",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2346,7 +2186,6 @@
       "type": "row"
     },
     {
-      "datasource": null,
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -2478,10 +2317,17 @@
       },
       "id": 8,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -2588,7 +2434,6 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2601,7 +2446,6 @@
       "type": "row"
     },
     {
-      "datasource": null,
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -2776,10 +2620,17 @@
       },
       "id": 10,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "targets": [
         {
           "exemplar": true,
@@ -2882,7 +2733,6 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2899,7 +2749,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -2930,7 +2779,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2946,7 +2795,7 @@
       "targets": [
         {
           "expr": "ceph_recovery_io_objects",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Objects",
           "refId": "A",
@@ -2954,9 +2803,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Objects",
       "tooltip": {
         "msResolution": false,
@@ -2966,33 +2813,25 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3000,7 +2839,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3031,7 +2869,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3047,7 +2885,7 @@
       "targets": [
         {
           "expr": "ceph_recovery_io_keys",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Keys",
           "refId": "A",
@@ -3055,9 +2893,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Keys",
       "tooltip": {
         "msResolution": false,
@@ -3067,33 +2903,25 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -3101,7 +2929,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
       "editable": true,
       "error": false,
       "fill": 1,
@@ -3132,7 +2959,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "8.0.6",
+      "pluginVersion": "8.3.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -3143,7 +2970,7 @@
       "targets": [
         {
           "expr": "ceph_recovery_io_bytes",
-          "interval": "$interval",
+          "interval": "$__interval",
           "intervalFactor": 1,
           "legendFormat": "Bytes",
           "refId": "A",
@@ -3151,9 +2978,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Bytes",
       "tooltip": {
         "msResolution": false,
@@ -3163,38 +2988,30 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
           "min": 0,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     }
   ],
   "refresh": false,
-  "schemaVersion": 30,
+  "schemaVersion": 33,
   "style": "dark",
   "tags": [
     "ceph",
@@ -3207,12 +3024,10 @@
         "auto_count": 10,
         "auto_min": "1m",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "auto",
           "value": "$__auto_interval_interval"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "label": "interval",
         "name": "interval",
@@ -3290,16 +3105,12 @@
         "type": "interval"
       },
       {
-        "allValue": null,
         "current": {
-          "selected": false,
-          "text": "ceph-exportor",
-          "value": "ceph-exportor"
+          "selected": true,
+          "text": "test-exporter",
+          "value": "test-exporter"
         },
-        "datasource": null,
         "definition": "label_values(ceph_active_pgs, job)",
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Cluster",
@@ -3319,7 +3130,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -3327,6 +3138,7 @@
   },
   "timezone": "",
   "title": "Cluster",
-  "uid": "1Is9o8Hnz",
-  "version": 21
+  "uid": "1Is9o8Hnh",
+  "version": 2,
+  "weekStart": ""
 }
