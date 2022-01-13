@@ -22,8 +22,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 143,
-  "iteration": 1641962177080,
+  "id": 91,
+  "iteration": 1642055881816,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -114,8 +114,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "ceph_health_status{job=\"$job\", cluster=\"ceph\"}",
+          "expr": "ceph_health_status{job=\"$job\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -174,8 +178,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "ceph_osd_total_bytes{job=\"$job\"}",
+          "expr": "ceph_cluster_total_bytes{job=\"$job\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -234,8 +242,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "ceph_osd_total_used_bytes{job=\"$job\"}",
+          "expr": "ceph_cluster_total_used_bytes{job=\"$job\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -293,8 +305,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "ceph_osd_total_used_bytes{job=\"$job\"}/ceph_osd_total_bytes{job=\"$job\"}*100",
+          "expr": "ceph_cluster_total_used_bytes{job=\"$job\"}/ceph_cluster_total_bytes{job=\"$job\"}*100",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -434,8 +450,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "sum(ceph_osd_up{job=\"$job\", cluster=\"ceph\"})",
+          "expr": "sum(ceph_osd_up{job=\"$job\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -492,8 +512,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "sum(ceph_osd_in{job=\"$job\", cluster=\"ceph\"})",
+          "expr": "sum(ceph_osd_in{job=\"$job\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -550,8 +574,12 @@
       "pluginVersion": "8.3.2",
       "targets": [
         {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "exemplar": true,
-          "expr": "count(ceph_pool_bytes_used{job=\"$job\"})",
+          "expr": "count(ceph_pool_metadata{job=\"$job\"})",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -2180,565 +2208,6 @@
         "x": 0,
         "y": 55
       },
-      "id": 18,
-      "panels": [],
-      "title": "OSD STATE",
-      "type": "row"
-    },
-    {
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "displayMode": "auto"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #A"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "used"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #B"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "total"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #C"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "pg num"
-              },
-              {
-                "id": "unit"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #D"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "up"
-              },
-              {
-                "id": "unit",
-                "value": "bool"
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #E"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "in "
-              },
-              {
-                "id": "unit",
-                "value": "bool"
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "color-background"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "used %"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percentunit"
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "lcd-gauge"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 12,
-        "w": 24,
-        "x": 0,
-        "y": 56
-      },
-      "id": 8,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "8.3.2",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "ceph_osd_used_bytes{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_osd_bytes{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_osd_pgs{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "C"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_osd_up{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "D"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_osd_in{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "E"
-        }
-      ],
-      "title": "osd status",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "host",
-                "osd",
-                "Value #E",
-                "Value #D",
-                "Value #C",
-                "Value #B",
-                "Value #A"
-              ]
-            }
-          }
-        },
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "used %",
-            "binary": {
-              "left": "Value #A",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "Value #B"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        },
-        {
-          "id": "sortBy",
-          "options": {
-            "fields": {},
-            "sort": [
-              {
-                "field": "osd"
-              }
-            ]
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 68
-      },
-      "id": 16,
-      "panels": [],
-      "title": "POOL STATE",
-      "type": "row"
-    },
-    {
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "custom": {
-            "align": "center",
-            "displayMode": "auto",
-            "filterable": false
-          },
-          "decimals": 2,
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "bytes"
-        },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #A"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "pg num"
-              },
-              {
-                "id": "unit",
-                "value": "none"
-              },
-              {
-                "id": "decimals"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #B"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "objects total"
-              },
-              {
-                "id": "unit"
-              },
-              {
-                "id": "decimals"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #C"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "available bytes"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #D"
-            },
-            "properties": [
-              {
-                "id": "displayName",
-                "value": "used bytes"
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "used %"
-            },
-            "properties": [
-              {
-                "id": "unit",
-                "value": "percentunit"
-              },
-              {
-                "id": "custom.displayMode",
-                "value": "lcd-gauge"
-              },
-              {
-                "id": "custom.width",
-                "value": 204
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "pg num"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 79
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "dirty objects total"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 138
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "total bytes"
-            },
-            "properties": [
-              {
-                "id": "custom.width",
-                "value": 141
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Value #E"
-            },
-            "properties": [
-              {
-                "id": "unit"
-              },
-              {
-                "id": "decimals"
-              },
-              {
-                "id": "displayName",
-                "value": "objects total"
-              }
-            ]
-          }
-        ]
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 24,
-        "x": 0,
-        "y": 69
-      },
-      "id": 10,
-      "options": {
-        "footer": {
-          "fields": "",
-          "reducer": [
-            "sum"
-          ],
-          "show": false
-        },
-        "showHeader": true,
-        "sortBy": []
-      },
-      "pluginVersion": "8.3.2",
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "ceph_pool_pg_num{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_pool_objects_total{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_pool_available_bytes{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "C"
-        },
-        {
-          "exemplar": true,
-          "expr": "ceph_pool_used_bytes{job=\"$job\"}",
-          "format": "table",
-          "hide": false,
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{osd}}",
-          "refId": "D"
-        }
-      ],
-      "title": "pool",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "pool",
-                "Value #A",
-                "Value #B",
-                "Value #C",
-                "Value #D",
-                "Value #E"
-              ]
-            }
-          }
-        },
-        {
-          "id": "merge",
-          "options": {}
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "total bytes",
-            "binary": {
-              "left": "Value #C",
-              "operator": "+",
-              "reducer": "sum",
-              "right": "Value #D"
-            },
-            "mode": "binary",
-            "reduce": {
-              "include": [],
-              "reducer": "sum"
-            },
-            "replaceFields": false
-          }
-        },
-        {
-          "id": "calculateField",
-          "options": {
-            "alias": "used %",
-            "binary": {
-              "left": "Value #D",
-              "operator": "/",
-              "reducer": "sum",
-              "right": "total bytes"
-            },
-            "mode": "binary",
-            "reduce": {
-              "reducer": "sum"
-            }
-          }
-        }
-      ],
-      "type": "table"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 78
-      },
       "id": 78,
       "panels": [],
       "title": "RECOVERY",
@@ -2758,7 +2227,7 @@
         "h": 4,
         "w": 8,
         "x": 0,
-        "y": 79
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 76,
@@ -2848,7 +2317,7 @@
         "h": 4,
         "w": 8,
         "x": 8,
-        "y": 79
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 74,
@@ -2938,7 +2407,7 @@
         "h": 4,
         "w": 8,
         "x": 16,
-        "y": 79
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 72,
@@ -3107,10 +2576,10 @@
       {
         "current": {
           "selected": true,
-          "text": "test-exporter",
-          "value": "test-exporter"
+          "text": "b28-ceph(k8s)-exporter",
+          "value": "b28-ceph(k8s)-exporter"
         },
-        "definition": "label_values(ceph_active_pgs, job)",
+        "definition": "label_values(ceph_pg_active, job)",
         "hide": 0,
         "includeAll": false,
         "label": "Cluster",
@@ -3118,7 +2587,7 @@
         "name": "job",
         "options": [],
         "query": {
-          "query": "label_values(ceph_active_pgs, job)",
+          "query": "label_values(ceph_pg_active, job)",
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
@@ -3130,8 +2599,8 @@
     ]
   },
   "time": {
-    "from": "now-30m",
-    "to": "now"
+    "from": "2022-01-13T05:26:04.202Z",
+    "to": "2022-01-13T07:26:04.202Z"
   },
   "timepicker": {
     "hidden": false
