@@ -54,7 +54,7 @@
   static_configs:    
   - targets: ['172.22.50.186:8180']
    
-- job_name: 'openstack(test)-vms-exportor'
+- job_name: 'openstack(test)-vms-exporter'
   scrape_interval: 120s
   scrape_timeout: 120s
   static_configs:
@@ -116,7 +116,7 @@
   - targets: ['172.22.50.66:9177']
 
 
-- job_name: 'openstack-vms-exportor'
+- job_name: 'openstack-vms-exporter'
   scrape_interval: 120s
   scrape_timeout: 120s
   static_configs:
@@ -133,6 +133,20 @@
   - targets: ['172.22.150.79:9100']
   - targets: ['172.22.150.62:9100']
   - targets: ['172.22.150.60:9100']
+  
+  - targets: ['172.22.150.81:9177']
+  - targets: ['172.22.150.53:9177']
+  - targets: ['172.22.150.248:9177']
+  - targets: ['172.22.150.54:9177']
+  - targets: ['172.22.150.51:9177']
+  - targets: ['172.22.150.56:9177']
+  - targets: ['172.22.150.72:9177']
+  - targets: ['172.22.150.61:9177']
+  - targets: ['172.22.150.70:9177']
+  - targets: ['172.22.150.52:9177']
+  - targets: ['172.22.150.79:9177']
+  - targets: ['172.22.150.62:9177']
+  - targets: ['172.22.150.60:9177']
 
 
 
