@@ -77,9 +77,9 @@ grafana:
         file: dashboards/ceph/node-exporter.json
     openstack:
       cluster:
-        file: dashboards/openstack/cluster.json
-      vms:
-        file: dashboards/openstack/vms.json
+        file: dashboards/openstack/openstack-exporter.json
+      libvirt:
+        file: dashboards/openstack/libvirt.json
 
 
   ingress:
