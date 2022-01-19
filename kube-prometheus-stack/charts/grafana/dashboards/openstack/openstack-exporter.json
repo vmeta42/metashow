@@ -24,7 +24,7 @@
   "gnetId": 14854,
   "graphTooltip": 0,
   "id": 186,
-  "iteration": 1642065164217,
+  "iteration": 1642573320616,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1313,10 +1313,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1378,10 +1374,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1642,10 +1634,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -1707,10 +1695,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           }
@@ -2306,6 +2290,6 @@
   "timezone": "",
   "title": "OpenStack Exporter",
   "uid": "V-ZEn_tnz",
-  "version": 2,
+  "version": 5,
   "weekStart": ""
 }
