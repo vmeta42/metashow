@@ -58,6 +58,11 @@ grafana:
         file: dashboards/zabbix-server.json
       zabbix-system-status:
         file: dashboards/zabbix-system-status.json
+      agent-server:
+        file: dashboards/agent-server.json
+      network:
+        file: dashboards/network.json
+
     ceph:
       ceph-server:
         file: dashboards/ceph.json
