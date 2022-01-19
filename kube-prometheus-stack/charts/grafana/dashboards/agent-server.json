@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1642499287462,
+  "iteration": 1642558838747,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1233,7 +1233,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 14,
         "w": 12,
         "x": 0,
         "y": 16
@@ -1295,7 +1295,7 @@
           }
         }
       ],
-      "title": "Panel Title",
+      "title": "Free disk space on / (percentage)",
       "type": "timeseries"
     },
     {
@@ -1352,7 +1352,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 14,
         "w": 12,
         "x": 12,
         "y": 16
@@ -1490,7 +1490,7 @@
         "allValue": null,
         "current": {
           "isNone": true,
-          "selected": true,
+          "selected": false,
           "text": "None",
           "value": ""
         },
@@ -1528,5 +1528,5 @@
   "timezone": "",
   "title": "agent-server",
   "uid": "ptAVcf27k",
-  "version": 12
+  "version": 13
 }
