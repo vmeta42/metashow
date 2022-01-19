@@ -23,7 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 5,
-  "iteration": 1642558838747,
+  "iteration": 1642581312431,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -1418,7 +1418,7 @@
       "type": "timeseries"
     }
   ],
-  "refresh": false,
+  "refresh": "30s",
   "schemaVersion": 32,
   "style": "dark",
   "tags": [],
@@ -1528,5 +1528,5 @@
   "timezone": "",
   "title": "agent-server",
   "uid": "ptAVcf27k",
-  "version": 13
+  "version": 14
 }
