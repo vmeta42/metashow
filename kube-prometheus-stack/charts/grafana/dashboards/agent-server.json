@@ -28,7 +28,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": null,
+      "datasource": "Zabbix",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1181,7 +1181,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": "Zabbix",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1299,7 +1299,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": null,
+      "datasource": "Zabbix",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1431,7 +1431,7 @@
           "text": "Discovered hosts",
           "value": "Discovered hosts"
         },
-        "datasource": null,
+        "datasource": "Zabbix",
         "definition": "Zabbix - group",
         "description": null,
         "error": null,
@@ -1462,7 +1462,7 @@
           "text": "172.22.240.23",
           "value": "172.22.240.23"
         },
-        "datasource": null,
+        "datasource": "Zabbix",
         "definition": "Zabbix - host",
         "description": null,
         "error": null,
@@ -1494,7 +1494,7 @@
           "text": "None",
           "value": ""
         },
-        "datasource": null,
+        "datasource": "Zabbix",
         "definition": "Zabbix - item",
         "description": null,
         "error": null,
