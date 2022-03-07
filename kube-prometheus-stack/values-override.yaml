@@ -10,6 +10,17 @@ global:
 alertmanager:
   enabled: false
 grafana:
+  grafana.ini:
+    smtp:
+      enabled: true
+      host: "mail.21vianet.com:587"
+      user: gitinfo@21vianet.com
+      password: 21Vnet@Git157
+      skip_verify: true
+      from_address: "gitinfo@21vianet.com"
+    alerting:
+      enabled: true
+      execute_alerts: true
   enabled: true
   defaultDashboardsEnabled: true
   defaultDashboardsTimezone: cst
