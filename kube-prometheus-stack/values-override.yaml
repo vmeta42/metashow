@@ -10,6 +10,8 @@ global:
 alertmanager:
   enabled: false
 grafana:
+  deploymentStrategy:
+    type: Recreate
   grafana.ini:
     smtp:
       enabled: true
