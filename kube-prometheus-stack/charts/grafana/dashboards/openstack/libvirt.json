@@ -249,7 +249,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": false,
-          "expr": "libvirt_domain_block_stats_physicalsize{instance=~\"$instance.*\", CLuster=\"$Cluster\"}",
+          "expr": "libvirt_domain_block_stats_physicalsize{instance=~\"$instance.*\", job=\"$job\"}",
           "format": "table",
           "instant": true,
           "interval": "",
