@@ -24,7 +24,7 @@
   "gnetId": 13633,
   "graphTooltip": 1,
   "id": 187,
-  "iteration": 1642572417139,
+  "iteration": 1647841413846,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -221,7 +221,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": false,
-          "expr": "(libvirt_domain_memory_stats_used_percent{instance=~\"$instance.*\"} * libvirt_domain_memory_stats_available{instance=~\"$instance.*\"}) / 100",
+          "expr": "(libvirt_domain_memory_stats_used_percent{instance=~\"$instance.*\", job=\"$job\"} * libvirt_domain_memory_stats_available{instance=~\"$instance.*\", job=\"$job\"}) / 100",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -235,7 +235,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": false,
-          "expr": "libvirt_domain_memory_stats_used_percent{instance=~\"$instance.*\"}",
+          "expr": "libvirt_domain_memory_stats_used_percent{instance=~\"$instance.*\", job=\"$job\"}",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -249,7 +249,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "exemplar": false,
-          "expr": "libvirt_domain_block_stats_physicalsize{instance=~\"$instance.*\"}",
+          "expr": "libvirt_domain_block_stats_physicalsize{instance=~\"$instance.*\", job=\"$job\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -5261,7 +5261,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -5290,7 +5290,7 @@
       },
       {
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "instance-",
           "value": "instance-"
         },
@@ -5319,9 +5319,9 @@
       },
       {
         "current": {
-          "selected": false,
-          "text": "openstack(test)-vms-exporter",
-          "value": "openstack(test)-vms-exporter"
+          "selected": true,
+          "text": "openstack-vms-exporter",
+          "value": "openstack-vms-exporter"
         },
         "definition": "label_values(libvirt_domain_memory_stats_available, job)",
         "hide": 0,
@@ -5350,6 +5350,6 @@
   "timezone": "",
   "title": "Libvirt",
   "uid": "8CLyTep7k",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
