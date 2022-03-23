@@ -204,7 +204,7 @@ minio:
     mountPath: /data
     accessModes:
       - ReadWriteOnce
-    size: 300Gi
+    size: 600Gi
   volumePermissions:
     enabled: true
     image:
