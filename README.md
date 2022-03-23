@@ -28,7 +28,15 @@ We deploy the monitor framework base on the following architecture.
 
 ### Thanos
 
-it contains minio, query frontend, query and storegateway.
+it contains minio, query frontend, query and storegateway.  
+minio need to add dev-k8s user with 'readwrite,consoleAdmin,diagnostics' policy and create the thanos bucket auto cleanup lifecycle.
+```shell
+./mc  --insecure ilm add --expiry-days "61" thanos-minio/thanos
+```
+the ilm can list with the following command:
+```shell
+./mc --insecure ilm ls thanos-minio/thanos --json
+```
 
 ### Kube-prometheus-stack
 
