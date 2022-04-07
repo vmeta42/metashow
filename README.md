@@ -52,7 +52,8 @@ TODO
 
 ## Zabbix
 
-![image-20220406154033273](img/image-20220406154033273.png)
+![image-20220406154033273](img/network.png)
+
 1、The server reports the operation status through ZABBIX agent, including CPU, memory, hard disk, network status, equipment operation, etc.
 
 2、Ensure the high availability of the server through bond.
