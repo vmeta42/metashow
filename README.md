@@ -52,4 +52,15 @@ TODO
 
 ## Zabbix
 
-TODO
+![image-20220406154033273](img/image-20220406154033273.png)
+1、The server reports the operation status through ZABBIX agent, including CPU, memory, hard disk, network status, equipment operation, etc.
+
+2、Ensure the high availability of the server through bond.
+
+3、Routing Switch&Ethernet Switch SNMP reports network status, equipment operation, network congestion,etc.
+
+4、VSU ensures high availability of switch.
+
+5、The loadbalance  ensures high availability of services.
+
+6、The firewall ensures the security and controllability of the data centers B28 and M6.
