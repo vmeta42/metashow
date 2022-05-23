@@ -199,7 +199,7 @@ local kp =
           start_tls = false
           ssl_skip_verify = false
           bind_dn = "cn=gitadm,ou=serverusers,ou=21vianet,dc=21vianet,dc=com"
-          bind_password = %s
+          bind_password = "%s"
           search_filter = "(sAMAccountName=%%s)"
           search_base_dns = ["dc=21vianet,dc=com"]
 
