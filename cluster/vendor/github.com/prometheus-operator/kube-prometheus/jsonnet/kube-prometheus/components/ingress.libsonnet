@@ -6,6 +6,8 @@ local ingress(name, namespace, rules, tls=[]) = {
     namespace: namespace,
     annotations: {
       'kubernetes.io/ingress.class': 'traefik',
+      'traefik.ingress.kubernetes.io/router.entrypoints': "websecure,web",
+      'traefik.ingress.kubernetes.io/router.tls': "true",
     },
   },
   spec: { 
