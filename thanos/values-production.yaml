@@ -33,10 +33,10 @@ query:
   resources:
     limits:
       cpu: 4
-      memory: 4096Mi
+      memory: 16Gi
     requests:
       cpu: 4
-      memory: 4096Mi
+      memory: 16Gi
   grpc:
     server:
       tls:
@@ -54,10 +54,10 @@ queryFrontend:
   resources:
     limits:
       cpu: 4
-      memory: 4096Mi
+      memory: 8Gi
     requests:
       cpu: 4
-      memory: 4096Mi
+      memory: 8Gi
   service:
     type: ClusterIP
     ports:
