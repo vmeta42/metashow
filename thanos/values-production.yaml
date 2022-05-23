@@ -152,7 +152,7 @@ storegateway:
   persistence:
     enabled: true
     storageClass: "csi-rbd-sc"
-    size: 8Gi
+    size: 50Gi
   ingress:
     enabled: false
   sharded:
