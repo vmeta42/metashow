@@ -140,10 +140,10 @@ storegateway:
   resources:
     limits:
       cpu: 4
-      memory: 16Gi
+      memory: 32Gi
     requests:
       cpu: 4
-      memory: 16Gi
+      memory: 32Gi
   service:
     type: ClusterIP
     ports:
