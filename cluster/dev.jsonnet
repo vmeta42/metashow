@@ -229,7 +229,7 @@ local kp =
 [ kp.kubePrometheus.namespace ] +
 [
   kp.prometheusOperator[name]
-  for name in std.filter((function(name) name != 'serviceMonitor' && name != 'prometheusRule'), std.objectFields(kp.prometheusOperator))
+  for name in std.filter((function(name) name != 'serviceMonitor' && name != 'prometheusRule' && !std.startsWith(name, '0') ), std.objectFields(kp.prometheusOperator))
 ] +
 [ kp.prometheusOperator.serviceMonitor ] +
 [ kp.prometheusOperator.prometheusRule ] +
