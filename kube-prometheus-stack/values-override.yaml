@@ -17,7 +17,7 @@ grafana:
       enabled: true
       host: "mail.21vianet.com:587"
       user: gitinfo@21vianet.com
-      password: 21Vnet@Git157
+      password: 21Vnet@Rdc042
       skip_verify: true
       from_address: "gitinfo@21vianet.com"
     alerting:
