@@ -149,7 +149,7 @@
         '30d',
       ],
     },
-    timezone: 'brower',
+    timezone: 'browser',
     title: title,
     version: 0,
   },
