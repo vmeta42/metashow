@@ -128,6 +128,7 @@ function(params) {
       image: po.config.image,
       args: [
         '--kubelet-service=kube-system/kubelet',
+        '--namespace=' + po.config.namespace,
         '--prometheus-config-reloader=' + po.config.configReloaderImage,
       ],
       ports: [{
