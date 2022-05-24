@@ -13,7 +13,7 @@ alertmanager:
     global:
       resolve_timeout: 5m
     route:
-      group_by: ['job']
+      group_by: ['cluster','job']
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
@@ -44,7 +44,7 @@ alertmanager:
       - monitor-alertmanager.dev.21vianet.com
   alertmanagerSpec:
     image:
-      repository: quay.io/prometheus/alertmanager
+      repository: harbor.dev.21vianet.com/library/alertmanager
       tag: v0.23.0
     replicas: 3
     retention: 120h
