@@ -19,7 +19,7 @@ objstoreConfig: |
 indexCacheConfig: |
   type: IN-MEMORY
   config:
-    max_size: "2048MB"
+    max_size: "8192MB"
 bucketCacheConfig: ""
 
 query:
@@ -158,7 +158,97 @@ storegateway:
   sharded:
     enabled: false
 ruler:
-  enabled: false
+  enabled: true
+  replicaLabel: replica
+  dnsDiscovery:
+    enabled: true
+  alertmanagers: ["dnssrv+_http._tcp.thanos-query.kube-admin.svc.cluster.local"]
+  evalInterval: 1m
+  clusterName: "admin"
+  config: ""
+  replicaCount: 3
+  resources:
+    limits:
+      cpu: 500m
+      memory: 4Gi
+    requests:
+      cpu: 500m
+      memory: 4Gi
+  service:
+    type: ClusterIP
+    ports:
+      http: 9090
+      grpc: 10901
+  persistence:
+    enabled: true
+    storageClass: "csi-rbd-sc"
+    accessModes:
+      - ReadWriteOnce
+    size: 16Gi
+  ingress:
+    enabled: true
+    hostname: thanos-ruler.dev.21vianet.com
+    ingressClassName: "traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    secrets:
+    - name: thanos-ruler-tls
+      key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpQIBAAKCAQEAt3Vm5o1Pd8tT+1PiMsu2wIWxfYJp6wDOI+zYLq+7TsavoeX7
+        GGAUD0TrBC34EKhe9xQ0cnD9iXSr3Z+SUKBCEqu5hBSQMI0vV9U8BvpgEH86UMom
+        VaTWmGQjy3tTe2E5ovObtlMztxPDzPn6Kor7tUft7/Nrta7oCKRzP4T2gses0acB
+        Rh3wZVg6S9hGl8CVbxFTFScrf93KwSxqHuKnhjhRArDBfuolqQazZ1wAcwE5V5uA
+        bYpYpm1N8ZnRj+QdyfUr1Mu9Tc8M4izNVV5ykFXdmUCi0ukEs3UMh74yaYM9yprQ
+        EC1uQJezpzaYOXpSQ+Gz8VrEYas9MPEknTXpRQIDAQABAoIBAQCl0IT66Mnkum/j
+        fwO5aYp6I9wyVocpEoc+zTjvqYGgR9BCgj0a4OwAiQfptSq605NRun9U2G8vp7YX
+        D70NBmvxuChrCrLwTwt1VZN1syLUhknM74kKa3xSLGB177eaklunvosEldruI/0a
+        7O2BOjEavjJ+aAL4KWgrN4e655BuzkYcSOhgjTLf0j/AaPHLMWlQ7fpE/uMMUGce
+        cmbw8xzxrxTIxUXjeirfSS6+Q3QajzSMaU2Sf4z1eJB1kqCVO4PTrTQAz4MPG1lY
+        J4hax//+vVyZRCoh3hDdrId0KEj0bK/ySVgGs/uNPvwBdP838Yq2i3st1h+qrqFK
+        HULe1S0BAoGBAOYwnUGZdRGd6C+UQdg42ggpvTQfVoG32kfZDn82Swi9WQtfQkA5
+        J6NZQBYQIoBpV55qYGzZI2Z1W9/SaTUmgj+4LVmHUXLfRlN4ww7apBflNvLf4OdA
+        kvCJ0m9PHDYKhvgnwFdDTYe96xQPGOptde70zu4W6XuIbNtVqJ+GZVKhAoGBAMwH
+        aNOOqMTcYpXi4X30ZYRHqCQZWCKvGKo26i3dhzKdOLBc1G2uw1ZaKlHDQtwTXRzI
+        TASnJTsAbGn0egwLoeme9BHk6JN6FI0bPFzN7jaCOvODFGWeYnqx9RZZ0SZMaWWd
+        Eue3QbhLxqTmRsSe7+HcVhLjhXp1ukfsHDMPZfglAoGBALXeyyC9YmWc4YpWFQAF
+        Sx8P+1FnQS4UWP5TXMTd3ML295eol+uuPMcvCRdlgBz9HiEn4y+dD/8v0nsw/7bi
+        yh4WIp6N76hXCHWDAHqH/QZ0L8oNYODVgENUYVNYqe14u9LtdWZ84pDRWR7sHr95
+        5Kf7/FLY/3h+/aL+NtBzmzKBAoGALuTZFB7q7WxWAGtINqHwn0m0/K8Skc461gyP
+        IIGVLG30dJyxepA7d2J77ZT6jgipUw86YatlJD2BrYyybIhT65VMNbyuNA9QH+qN
+        oir2wHKISCXtjzmrGtZCJaP5LVtMsj069iUppslL2+TNiS2apwf0hJzktfPPH+7F
+        wHqejj0CgYEAoP08st8UqUhCY8/mOS3FKRIbIv/YTf+l1TivcCKyynHqE/Z69dfQ
+        ybArDG5UGHasOb7Z/6SH+gp0Bmkf19S6NaKi+O4uxLtBVf3PkyopYzAeXeGxzVv4
+        Qwm3F38+fsAfCAML00ukGHHdZGPzHPXqUbDK+9qiya3IIEWDmMchwBg=
+        -----END RSA PRIVATE KEY-----
+      certificate: |
+        -----BEGIN CERTIFICATE-----
+        MIIDeDCCAmCgAwIBAgIJAIVoissb1VN/MA0GCSqGSIb3DQEBCwUAMGQxCzAJBgNV
+        BAYTAkNOMQswCQYDVQQIDAJCSjELMAkGA1UEBwwCQkoxETAPBgNVBAoMCDIxdmlh
+        bmV0MRcwFQYDVQQLDA5Tb2Z0d2FyZUNlbnRlcjEPMA0GA1UEAwwGcm9vdGNhMCAX
+        DTIyMDUyNDA5Mzc1MVoYDzIxMjIwNDMwMDkzNzUxWjBjMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECAwCQkoxCzAJBgNVBAcMAkJKMREwDwYDVQQKDAgyMXZpYW5ldDEXMBUG
+        A1UECwwOU29mdHdhcmVDZW50ZXIxDjAMBgNVBAMMBXJ1bGVyMIIBIjANBgkqhkiG
+        9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt3Vm5o1Pd8tT+1PiMsu2wIWxfYJp6wDOI+zY
+        Lq+7TsavoeX7GGAUD0TrBC34EKhe9xQ0cnD9iXSr3Z+SUKBCEqu5hBSQMI0vV9U8
+        BvpgEH86UMomVaTWmGQjy3tTe2E5ovObtlMztxPDzPn6Kor7tUft7/Nrta7oCKRz
+        P4T2gses0acBRh3wZVg6S9hGl8CVbxFTFScrf93KwSxqHuKnhjhRArDBfuolqQaz
+        Z1wAcwE5V5uAbYpYpm1N8ZnRj+QdyfUr1Mu9Tc8M4izNVV5ykFXdmUCi0ukEs3UM
+        h74yaYM9yprQEC1uQJezpzaYOXpSQ+Gz8VrEYas9MPEknTXpRQIDAQABoywwKjAo
+        BgNVHREEITAfgh10aGFub3MtcnVsZXIuZGV2LjIxdmlhbmV0LmNvbTANBgkqhkiG
+        9w0BAQsFAAOCAQEAlvlDPr3uRI2KRsmfFsThdgmcGAis8W+fwP01UJ6h4AWAiKZo
+        TDhrXtMz62EXPRv5RxclXxFK7OyhpLShMa8AB2rCbTXSNbXGNrQ/SOjB6GUWvnH8
+        BRn8n5lS6aVYfWkQMfGEM2D8sX0nw7E0pHW6B39avU1fIBCXh7ikerfPksDk51JJ
+        YD0a5oQuf3w8yhwgTXuc4ZBxgcDJe7fsDu2oTb9cRkb2u9/O/mIiBLpIjgUpaLED
+        zVt2btWsNIhOVE8ZmbAR8hW2G8/tmvI687bdf7bHCosDqZcFgpfJjjUPtI2W6wYS
+        2VY67lQgdiXU5UoXPi3x8XhfwJAqlA+8DiEmmQ==
+        -----END CERTIFICATE-----
+    tls: true
+    path: /
+    pathType: ImplementationSpecific
 receive:
   enabled: false
 receiveDistributor:
