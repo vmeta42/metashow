@@ -8,7 +8,115 @@ global:
     pspEnabled: false
 
 alertmanager:
-  enabled: false
+  enabled: true
+  config:
+    global:
+      resolve_timeout: 5m
+    route:
+      group_by: ['job']
+      group_wait: 30s
+      group_interval: 5m
+      repeat_interval: 12h
+      receiver: 'null'
+      routes:
+      - match:
+          alertname: Watchdog
+        receiver: 'null'
+    receivers:
+    - name: 'null'
+    templates:
+    - '/etc/alertmanager/config/*.tmpl'
+  ingress:
+    enabled: true
+    ingressClassName: traefik
+    annotations: 
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      traefik.ingress.kubernetes.io/router.tls: "true"
+    hosts:
+    - monitor-alertmanager.dev.21vianet.com
+    paths:
+    - /
+    tls:
+    - secretName: alertmanager-general-tls
+      hosts:
+      - monitor-alertmanager.dev.21vianet.com
+  alertmanagerSpec:
+    image:
+      repository: quay.io/prometheus/alertmanager
+      tag: v0.23.0
+    replicas: 3
+    retention: 120h
+    storage:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: csi-rbd-sc
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 50Gi
+    externalUrl: https://monitor-alertmanager.dev.21vianet.com
+    resources:
+      requests:
+        memory: 2048Mi
+        cpu: 500m
+      limits:
+        memory: 2048Mi
+        cpu: 500m
+  extraSecret:
+    name: "alertmanager-general-tls"
+    data:
+      tls.key: |
+        -----BEGIN RSA PRIVATE KEY-----
+        MIIEpAIBAAKCAQEA4IH5X6MOJDQwsiQj5O5PD5bjIPtEVJACfNZloFcBlI2yfGmx
+        unMCVziGdDQ9CjMZlQtDLfLumXEGVhR/XU6vNyXTwUKt1n4fJYZLHaVwex4gjT/6
+        MVkrdXIPHSou42BHoEevZ8z/zbhNSmPbDDeTfdDzAY2Qd2g3BurB3Cpok7jI38yp
+        BaIpHNOtSIeLqBjFoG11nSX/vLyvjvHJYLZJ85aCNbMnYD7IBpAdtwI4cPXVGkYR
+        Njd2UqTm32m8lzkNSuHShVOkVAzv9ZBp4bm5gj+D9UVtGYAWUxuHuzjCgzYw+HQa
+        9c38eli2TX7+T5Z+FPLtrY9FtvDfbKOx9HQeFQIDAQABAoIBAGFhn1SPepPTm4e5
+        y2QCxoJhlZV5x/LSIHIb4SsCcmoIaHI0umXAezRwDUocWpmw/pi6sOIebMZb0z7F
+        V1WWysOmAcrjbFoMjOAO90gducN9lusN5C1Bm2svFUU2Re5Uldz9GyVwM0j9d3Ec
+        DSiodq5tUurKh+5zYuL6MyqXrpLcFSCpytc+IR2nSN4oOQBk9bl7MU5Mb8xU9zNp
+        tv/OE3/T+bXiywk9W0yhDLH+gyg+W8U+PcmbsyO4R1TonUXxF16aStSPhTYURO7g
+        k+zko0zgV4TGYD+XR3oGb+JmBQVvEDEAhNagg2ETqpFHGMxUS+A7JXV+rRG3aqyJ
+        GvIuqoUCgYEA9ipgclaDGriiKoG/fSptmqKBTJm8tywiLz6R7ErN5u0vyES8RKJm
+        OLH1qXeq67fKbMaXr/n0KoY6EstF98c/1f0bIEju0W8lt4KC+bqmhDQonlnpVd7x
+        HFAdK3HwKZY7vvaV4JsfKjPbTmnIxLSeHISpNKx+tqnK7/0p4K/FIYcCgYEA6XoY
+        VOW0PQ0LGPwQ+13aOs+Ejbe435btckDAKjswoFp9liVDkYU+INnRoxNkZsBg2uz9
+        t9xivJR0BcmXrWABKkQ+CuM6HNeUZ9XNbbnVPU5qt30Q6+KtiCAHNrd53OCWAEjz
+        hwaj430UuEX3EGkGVntpuNqzLzhVlHrn5YmB2oMCgYEAo7MenCqH2Pc7cEUEUHos
+        lQ7IKWZ7JtyEhyJ268n7Dzxf8DA1evb8P2uo0F+yHDsGtDuEmBQCmVzVtbXT+6hW
+        /TjqFxgpKMFfNZ/m9ad4IKaG9HcaQm6VrJxiKYgFi8JKTP2yQcEmgmwlxQl358es
+        9Y4K7+peAZ78Q4f5l1+MGnUCgYBsaTwpF6wUeR0BEfJUteSiUD+NipS2hZ9l4PkZ
+        4vgWTU5pTI5OYN9TY7D7FwMUzxlqLoc1O4lBZXFmSpA6egywcpWYeqA+Sj/n4xgL
+        bjG80M+uuc0EqvHG9pBC8PkN/d7I7RbfSM8Kz8ayNhKdtRazS4Twx+RR9cePNW6+
+        X5ZDPwKBgQCmeu63sXjQfVMhCxggykTtrJQPSr0kRg/8UQNid1ybOftvVcGh6FXz
+        F94edvSMxQimXPASale+2kT/b8W+U1qRKDKAsU8OfmkCZ08o26LjjzOlqub99F6X
+        BARuFOt5uxIEflJL6EH/HZLUnQk2A/rmKkXexU6MNc7NNEA0fDERxg==
+        -----END RSA PRIVATE KEY-----
+      tls.crt: |
+        -----BEGIN CERTIFICATE-----
+        MIIDhzCCAm+gAwIBAgIJAIVoissb1VN+MA0GCSqGSIb3DQEBCwUAMGQxCzAJBgNV
+        BAYTAkNOMQswCQYDVQQIDAJCSjELMAkGA1UEBwwCQkoxETAPBgNVBAoMCDIxdmlh
+        bmV0MRcwFQYDVQQLDA5Tb2Z0d2FyZUNlbnRlcjEPMA0GA1UEAwwGcm9vdGNhMCAX
+        DTIyMDUyNDA4MDYxMFoYDzIxMjIwNDMwMDgwNjEwWjBqMQswCQYDVQQGEwJDTjEL
+        MAkGA1UECAwCQkoxCzAJBgNVBAcMAkJKMREwDwYDVQQKDAgyMXZpYW5ldDEXMBUG
+        A1UECwwOU29mdHdhcmVDZW50ZXIxFTATBgNVBAMMDGFsZXJ0bWFuYWdlcjCCASIw
+        DQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOCB+V+jDiQ0MLIkI+TuTw+W4yD7
+        RFSQAnzWZaBXAZSNsnxpsbpzAlc4hnQ0PQozGZULQy3y7plxBlYUf11Orzcl08FC
+        rdZ+HyWGSx2lcHseII0/+jFZK3VyDx0qLuNgR6BHr2fM/824TUpj2ww3k33Q8wGN
+        kHdoNwbqwdwqaJO4yN/MqQWiKRzTrUiHi6gYxaBtdZ0l/7y8r47xyWC2SfOWgjWz
+        J2A+yAaQHbcCOHD11RpGETY3dlKk5t9pvJc5DUrh0oVTpFQM7/WQaeG5uYI/g/VF
+        bRmAFlMbh7s4woM2MPh0GvXN/HpYtk1+/k+WfhTy7a2PRbbw32yjsfR0HhUCAwEA
+        AaM0MDIwMAYDVR0RBCkwJ4IlbW9uaXRvci1hbGVydG1hbmFnZXIuZGV2LjIxdmlh
+        bmV0LmNvbTANBgkqhkiG9w0BAQsFAAOCAQEAiQKGh//Jy1oLZMEfhVtAmNUEwi2s
+        Px5gL0V380828gnW1kcXKpM9dHDxnsyNbNyU9tUu8bTB/aOHkxwL52av8lwpc1As
+        NN/zYqMtPCdJ0vbwmSgWSdNoSf734RoUQWywU5NKzLjjijW3a0yzJzGjWNHHKWcD
+        trP2M14xyVUcbYcJ7HRnESkBE9tM0jk056QbVdXGjyQ8Rnk1cHUk7B8VhkeO8+1f
+        KGN1zmeMLg+mkbJfSuUC6OyH+ekB364+7hH7aWgpbF+dJMMvKLgApHJuSe8jueh+
+        0L0m6XtpNJbUfgjt1S/yGohBYpyUMCnvyuxXJcPr6EvUUJSmpKc1J2aToQ==
+        -----END CERTIFICATE-----
 grafana:
   deploymentStrategy:
     type: Recreate
