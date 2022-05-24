@@ -165,7 +165,12 @@ ruler:
   alertmanagers: ["dnssrv+_http._tcp.thanos-query.kube-admin.svc.cluster.local"]
   evalInterval: 1m
   clusterName: "admin"
-  config: ""
+  config: |
+    groups:
+      - name: "metamonitoring"
+        rules:
+          - alert: "PrometheusDown"
+            expr: absent(up{prometheus="monitoring/k8s"})
   replicaCount: 3
   resources:
     limits:
