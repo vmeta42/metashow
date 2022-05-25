@@ -177,6 +177,27 @@ local kp =
               max_idle_conns_per_host: 100
               max_conns_per_host: 0
         ||| % minioSecret,
+        additionalAlertManagerConfigs: |||
+          - api_version: v2
+            path_prefix: /
+            sechme: https
+            tls_config:
+              insecure_skip_verify: true
+            static_configs:
+            - targets:
+              - https://monitor-alertmanager-0.dev.21vianet.com
+              - https://monitor-alertmanager-1.dev.21vianet.com
+              - https://monitor-alertmanager-2.dev.21vianet.com
+            relabel_configs:
+            - action: keep
+              source_labels:
+              - __meta_kubernetes_service_name
+              regex: alertmanager-main
+            - action: keep
+              source_labels:
+              - __meta_kubernetes_endpoint_port_name
+              regex: web
+        |||,
       },
       grafana+:: {
         config+: {

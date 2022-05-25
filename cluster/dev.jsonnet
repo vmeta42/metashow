@@ -177,6 +177,7 @@ local kp =
               max_idle_conns_per_host: 100
               max_conns_per_host: 0
         ||| % minioSecret,
+        extralAlertmanagers: [{namespace: 'kube-admin', name: 'monitor-kube-prometheus-st-alertmanager' , port: 'http-web', apiVersion: 'v2',}],
       },
       grafana+:: {
         config+: {
