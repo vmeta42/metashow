@@ -188,15 +188,6 @@ local kp =
               - monitor-alertmanager-0.dev.21vianet.com
               - monitor-alertmanager-1.dev.21vianet.com
               - monitor-alertmanager-2.dev.21vianet.com
-            relabel_configs:
-            - action: keep
-              source_labels:
-              - __meta_kubernetes_service_name
-              regex: alertmanager-main
-            - action: keep
-              source_labels:
-              - __meta_kubernetes_endpoint_port_name
-              regex: web
         |||,
       },
       grafana+:: {
