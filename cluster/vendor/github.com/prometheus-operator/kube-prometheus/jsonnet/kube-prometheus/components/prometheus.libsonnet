@@ -40,6 +40,8 @@ local defaults = {
   },
   thanos: {},
   minio: "",
+  extralAlertmanagers: [],
+  additionalAlertManagerConfigs: "",
 };
 
 
@@ -297,6 +299,19 @@ function(params) {
     },
   },
 
+  [ if (defaults + params).additionalAlertManagerConfigs != "" then 'additionalAlertmanagersSecret' ]: {
+    apiVersion: 'v1',
+    kind: 'Secret',
+    type: 'Opaque',
+    metadata: {
+      name: 'prometheus-additionall-alertmanager',
+      namespace: p._config.namespace,
+    },
+    data: {
+      'additional-alertmanager-configs.yaml' : std.base64(p._config.additionalAlertManagerConfigs),
+    },    
+  },
+
   prometheus: {
     apiVersion: 'monitoring.coreos.com/v1',
     kind: 'Prometheus',
@@ -306,6 +321,10 @@ function(params) {
       labels: { prometheus: p._config.name } + p._config.commonLabels,
     },
     spec: {
+      [ if (defaults + params).additionalAlertManagerConfigs != "" then 'additionalAlertManagerConfigs'] : {
+        name: 'prometheus-additionall-alertmanager',
+        key: 'additional-alertmanager-configs.yaml',
+      },
       replicas: p._config.replicas,
       version: p._config.version,
       image: p._config.image,
@@ -329,7 +348,7 @@ function(params) {
           name: 'alertmanager-' + p._config.alertmanagerName,
           port: 'web',
           apiVersion: 'v2',
-        }],
+        }] + p._config.extralAlertmanagers,
       },
       securityContext: {
         runAsUser: 1000,
