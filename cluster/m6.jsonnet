@@ -185,9 +185,9 @@ local kp =
               insecure_skip_verify: true
             static_configs:
             - targets:
-              - https://monitor-alertmanager-0.dev.21vianet.com
-              - https://monitor-alertmanager-1.dev.21vianet.com
-              - https://monitor-alertmanager-2.dev.21vianet.com
+              - monitor-alertmanager-0.dev.21vianet.com
+              - monitor-alertmanager-1.dev.21vianet.com
+              - monitor-alertmanager-2.dev.21vianet.com
             relabel_configs:
             - action: keep
               source_labels:
