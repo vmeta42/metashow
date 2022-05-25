@@ -162,7 +162,7 @@ ruler:
   replicaLabel: replica
   dnsDiscovery:
     enabled: true
-  alertmanagers: ["dnssrv+_http._tcp.thanos-query.kube-admin.svc.cluster.local"]
+  alertmanagers: ["dnssrv+_http-web._tcp.alertmanager-operated.kube-admin.svc.cluster.local"]
   evalInterval: 1m
   clusterName: "admin"
   config: |
