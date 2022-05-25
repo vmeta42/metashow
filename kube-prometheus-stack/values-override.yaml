@@ -54,6 +54,7 @@ alertmanager:
     hostDomain: "dev.21vianet.com"
     paths:
     - /
+    pathType: ImplementationSpecific
     tlsSecretName: "alertmanager-general-tls"
   servicePerReplica:
     enabled: true
