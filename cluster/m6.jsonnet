@@ -180,7 +180,7 @@ local kp =
         additionalAlertManagerConfigs: |||
           - api_version: v2
             path_prefix: /
-            sechme: https
+            scheme: https
             tls_config:
               insecure_skip_verify: true
             static_configs:
