@@ -12,7 +12,6 @@ alertmanager:
   email:
     username: 'zhangsan@example.com'
     password: pwd
-    to: 'lisi@example.com'
   config:
     global:
       resolve_timeout: 5m
@@ -25,30 +24,30 @@ alertmanager:
       routes:
       - match:
           cluster: production
-        receiver: email
+        receiver: dc-email
         group_by: ['alertname', "namespace"]
         routes:
         - match:
             namespace: oa-prod
-          receiver: email
+          receiver: dc-email
       - match:
           cluster: dev
-        receiver: email
+        receiver: 'null'
       - match:
           cluster: m6-prod
         group_by: ['alertname', "namespace"]
-        receiver: email
+        receiver: dc-email
         routes:
         - match:
             namespace: habor
-          receiver: email
+          receiver: dc-email
     receivers:
     - name: 'null'
-    - name: email
+    - name: dc-email
       email_configs:
       - smarthost: "mail.21vianet.com:587"
         from: '{{ .Values.alertmanager.email.username }}'
-        to: '{{ .Values.alertmanager.email.to }}'
+        to: 'zhang.hu5@21vianet.com,patrick.zhu@dyxnet.com,jasper.feng@dyxnet.com'
         send_resolved: true
         auth_username: '{{ .Values.alertmanager.email.username }}'
         auth_password: '{{ .Values.alertmanager.email.password }}'
