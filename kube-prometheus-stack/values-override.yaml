@@ -9,23 +9,74 @@ global:
 
 alertmanager:
   enabled: true
+  email:
+    username: 'zhangsan@example.com'
+    password: pwd
+    to: 'lisi@example.com'
   config:
     global:
       resolve_timeout: 5m
     route:
-      group_by: ['cluster','job']
+      group_by: ['cluster','alertname']
       group_wait: 30s
       group_interval: 5m
       repeat_interval: 12h
       receiver: 'null'
       routes:
       - match:
-          alertname: Watchdog
-        receiver: 'null'
+          cluster: production
+        receiver: email
+        group_by: ['alertname', "namespace"]
+        routes:
+        - match:
+            namespace: oa-prod
+          receiver: email
+      - match:
+          cluster: dev
+        receiver: email
+      - match:
+          cluster: m6-prod
+        group_by: ['alertname', "namespace"]
+        receiver: email
+        routes:
+        - match:
+            namespace: habor
+          receiver: email
     receivers:
     - name: 'null'
+    - name: email
+      email_configs:
+      - smarthost: "mail.21vianet.com:587"
+        from: '{{ .Values.alertmanager.email.username }}'
+        to: '{{ .Values.alertmanager.email.to }}'
+        send_resolved: true
+        auth_username: '{{ .Values.alertmanager.email.username }}'
+        auth_password: '{{ .Values.alertmanager.email.password }}'
+        require_tls: true
+        tls_config:
+          insecure_skip_verify: true
+        text: |-
+          {{ `{{template "email.text" . }}` }}
     templates:
     - '/etc/alertmanager/config/*.tmpl'
+  tplConfig: true
+  templateFiles:
+    template_1.tmpl: |-
+      {{ define "cluster" }}{{ .ExternalURL }}{{ end }}
+
+      {{ define "email.text" }}
+      {{- $root := . -}}
+      {{ range .Alerts }}
+        *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+        *Cluster:* {{ template "cluster" $root }}
+        *Description:* {{ .Annotations.description }}
+        *Graph:* <{{ .GeneratorURL }}|:chart_with_upwards_trend:>
+        *Runbook:* <{{ .Annotations.runbook }}|:spiral_note_pad:>
+        *Details:*
+          {{ range .Labels.SortedPairs }} - *{{ .Name }}:* `{{ .Value }}`
+          {{ end }}
+      {{ end }}
+      {{ end }}
   ingress:
     enabled: true
     ingressClassName: traefik
