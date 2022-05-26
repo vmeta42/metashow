@@ -12,6 +12,7 @@ alertmanager:
   email:
     username: 'zhangsan@example.com'
     password: pwd
+    to: 'lisi@example.com'
   config:
     global:
       resolve_timeout: 5m
@@ -47,7 +48,7 @@ alertmanager:
       email_configs:
       - smarthost: "mail.21vianet.com:587"
         from: '{{ .Values.alertmanager.email.username }}'
-        to: "zhang.hu5@21vianet.com"
+        to: '{{ .Values.alertmanager.email.to }}'
         send_resolved: true
         auth_username: '{{ .Values.alertmanager.email.username }}'
         auth_password: '{{ .Values.alertmanager.email.password }}'
