@@ -1,3 +1,5 @@
+![image](img/MetaShow_logo.png)  
+
 # Monitor
 
 This projects deploy the prometheus monitor framework. 
