@@ -207,7 +207,7 @@
       pvc.mixin.metadata.withName('grafana-storage') +
       pvc.mixin.spec.withAccessModes('ReadWriteMany') +
       pvc.mixin.spec.withStorageClassName($._config.grafana.sc) +
-      pvc.mixin.spec.resources.withRequests({ storage: $._config.grafana.sc }),
+      pvc.mixin.spec.resources.withRequests({ storage: $._config.grafana.size }),
     deployment:
       local targetPort = $._config.grafana.port;
       local portName = 'http';
