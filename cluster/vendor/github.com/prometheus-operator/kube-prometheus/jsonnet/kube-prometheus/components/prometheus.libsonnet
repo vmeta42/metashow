@@ -38,6 +38,7 @@ local defaults = {
       runbookURLPattern: 'https://github.com/prometheus-operator/kube-prometheus/wiki/%s',
     },
   },
+  storage: {},
   thanos: {},
   minio: "",
   extralAlertmanagers: [],
@@ -355,18 +356,7 @@ function(params) {
         runAsNonRoot: true,
         fsGroup: 2000,
       },
-      storage: {
-        volumeClaimTemplate: {
-          spec: {
-            storageClassName: 'csi-rbd-sc',
-            resources: {
-              requests: {
-                storage: '40Gi',
-              },
-            },
-          },
-        },
-      },
+      [if std.objectHas(params, 'storage') then 'storage']: p._config.storage,
       [if std.objectHas(params, 'thanos') then 'thanos']: p._config.thanos,
     },
   },

@@ -153,6 +153,7 @@ local kp =
       },
 
       prometheus+:: {
+        storage: { volumeClaimTemplate: { spec: { storageClassName: 'csi-rbd-sc', resources: { requests: { storage: '40Gi'}}}}},
         thanos: { image: registry + 'thanos:quay-v0.23.1', objectStorageConfig: {key: 'object-store.yaml', name: 'minio'}, version: 'v0.23.1'},
         externalLabels+: {
           cluster: 'dev',
