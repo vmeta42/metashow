@@ -3,20 +3,12 @@ local bindPassword=std.extVar("bindPassword");
 local registry="harbor.chanty.21vianet.com/library/";
 local grafanaHost='grafana-bigdata.chanty.21vianet.com';
 local grafanaUrl='https://'+grafanaHost+'/';
-local grafanaKey = |||
-        xxxxxx
-      |||;
-local grafanaCert = |||
-        xxxxx
-      |||;
+local grafanaKey = std.extVar("grafanaKey");
+local grafanaCert = std.extVar("grafanaCert");
 local alertmanagerHost='alertmanager-bigdata.chanty.21vianet.com';
 local alertmanagerUrl='https://' + alertmanagerHost;
-local alertmanagerCert = |||
-        xxxx
-      |||;
-local alertmanagerKey = |||
-        xxxx
-      |||;
+local alertmanagerCert = std.extVar("alertmanagerCert");
+local alertmanagerKey = std.extVar("alertmanagerKey");
 
 local kp =
   (import 'kube-prometheus/main.libsonnet') +
