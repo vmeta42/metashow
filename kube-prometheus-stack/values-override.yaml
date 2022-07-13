@@ -41,6 +41,10 @@ alertmanager:
         - match:
             namespace: habor
           receiver: dc-email
+      - match:
+          cluster: bigdata-prod
+        group_by: ['alertname', "namespace"]
+        receiver: dc-email
     receivers:
     - name: 'null'
     - name: dc-email
