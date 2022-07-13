@@ -1,3 +1,6 @@
+![image](img/MetaShow_logo.png)  
+
+ ![image](https://img.shields.io/badge/license-MIT-green)  
 # Monitor
 
 This projects deploy the prometheus monitor framework. 
