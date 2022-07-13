@@ -238,7 +238,7 @@
       local dashboardsVolumeMount = { name: dashboardsVolumeName, mountPath: '/etc/grafana/provisioning/dashboards', readOnly: false };
 
       local volumeMounts =
-        if std.length($._config.grafana.sc) > 0 then [storageVolumeMount] else [] +
+        (if std.length($._config.grafana.sc) > 0 then [storageVolumeMount] else []) +
         [
           datasourcesVolumeMount,
           dashboardsVolumeMount,
@@ -276,7 +276,7 @@
         );
 
       local volumes =
-        if std.length($._config.grafana.sc) > 0 then [storageVolume] else [] +
+        (if std.length($._config.grafana.sc) > 0 then [storageVolume] else []) +
         [
           datasourcesVolume,
           dashboardsVolume,
