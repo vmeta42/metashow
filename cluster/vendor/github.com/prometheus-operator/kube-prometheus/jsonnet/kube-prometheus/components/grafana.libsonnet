@@ -29,6 +29,8 @@ local defaults = {
   config: {},
   plugins: [],
   ldap: "",
+  sc: "",
+  size: "2Gi",
 };
 
 function(params) {
@@ -59,6 +61,8 @@ function(params) {
         config+: g._config.config,
         plugins+: g._config.plugins,
         ldap: g._config.ldap,
+        sc: g._config.sc,
+        size: g._config.size,
       } + (
         // Conditionally overwrite default setting.
         if std.length(g._config.datasources) > 0 then
@@ -72,7 +76,7 @@ function(params) {
   [if std.objectHas(params, 'config') && std.length(params.config) > 0 then 'config']: glib.grafana.config,
   service: glib.grafana.service,
   serviceAccount: glib.grafana.serviceAccount,
-  persistentVolumeClaim: glib.grafana.storage,
+  [if std.objectHas(params, 'sc') then 'persistentVolumeClaim']: glib.grafana.storage,
   deployment: glib.grafana.deployment,
   dashboardDatasources: glib.grafana.dashboardDatasources,
   dashboardSources: glib.grafana.dashboardSources,
