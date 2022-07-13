@@ -76,7 +76,7 @@ function(params) {
   [if std.objectHas(params, 'config') && std.length(params.config) > 0 then 'config']: glib.grafana.config,
   service: glib.grafana.service,
   serviceAccount: glib.grafana.serviceAccount,
-  [if std.objectHas(glib.grafana, 'storage') then 'persistentVolumeClaim']: glib.grafana.storage,
+  [if std.objectHas(params, 'sc') then 'persistentVolumeClaim']: glib.grafana.storage,
   deployment: glib.grafana.deployment,
   dashboardDatasources: glib.grafana.dashboardDatasources,
   dashboardSources: glib.grafana.dashboardSources,
