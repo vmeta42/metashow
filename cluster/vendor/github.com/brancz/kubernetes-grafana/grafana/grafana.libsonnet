@@ -48,6 +48,8 @@
         limits: { cpu: '200m', memory: '200Mi' },
       },
       containers: [],
+      sc: "",
+      size: "2Gi",
     },
   },
   grafanaDashboards: {},
@@ -197,15 +199,15 @@
           namespace: $._config.namespace,
         },
       },
-    storage:
+    [if std.length($._config.grafana.sc) > 0 then 'storage']:
       local k = import 'ksonnet/ksonnet.beta.4/k.libsonnet';
       local pvc = k.core.v1.persistentVolumeClaim;
       pvc.new() +
       pvc.mixin.metadata.withNamespace($._config.namespace) +
       pvc.mixin.metadata.withName('grafana-storage') +
       pvc.mixin.spec.withAccessModes('ReadWriteMany') +
-      pvc.mixin.spec.withStorageClassName('csi-cephfs-sc') +
-      pvc.mixin.spec.resources.withRequests({ storage: '2Gi' }),
+      pvc.mixin.spec.withStorageClassName($._config.grafana.sc) +
+      pvc.mixin.spec.resources.withRequests({ storage: $._config.grafana.sc }),
     deployment:
       local targetPort = $._config.grafana.port;
       local portName = 'http';
@@ -236,8 +238,8 @@
       local dashboardsVolumeMount = { name: dashboardsVolumeName, mountPath: '/etc/grafana/provisioning/dashboards', readOnly: false };
 
       local volumeMounts =
+        if std.length($._config.grafana.sc) > 0 then [storageVolumeMount] else [] +
         [
-          storageVolumeMount,
           datasourcesVolumeMount,
           dashboardsVolumeMount,
         ] +
@@ -274,8 +276,8 @@
         );
 
       local volumes =
+        if std.length($._config.grafana.sc) > 0 then [storageVolume] else [] +
         [
-          storageVolume,
           datasourcesVolume,
           dashboardsVolume,
         ] +
