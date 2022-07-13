@@ -202,6 +202,7 @@ local kp =
             },
           },
         },
+        sc: "csi-cephfs-sc",
         ldap: |||
           verbose_logging = true
 
