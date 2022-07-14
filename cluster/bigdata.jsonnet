@@ -23,6 +23,7 @@ local kp =
   // (import 'kube-prometheus/addons/custom-metrics.libsonnet') +
   // (import 'kube-prometheus/addons/external-metrics.libsonnet') +
   (import 'kube-prometheus/platforms/kubeadm.libsonnet') +
+  (import 'resource.libsonnet') +
   {
     values+:: {
       common+: {
