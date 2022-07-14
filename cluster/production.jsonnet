@@ -1,5 +1,7 @@
 local minioSecret=std.extVar("minioSecretKey");
 local bindPassword=std.extVar("bindPassword");
+local grafanaUser=std.extVar("grafanaUser");
+local grafanaPassword=std.extVar("grafanaPassword");
 local registry="harbor.chanty.21vianet.com/library/";
 local grafanaHost='monitor.chanty.21vianet.com';
 local grafanaUrl='https://'+grafanaHost+'/';
@@ -136,6 +138,31 @@ local kp =
       alertmanager+: {
         spec+: {
           externalUrl: alertmanagerUrl,
+        },
+      },
+    },
+    grafana+:: {
+      deployment+: {
+        spec+: {
+          template+: {
+            spec+: {
+              containers: [
+                if c.name == 'grafana' then c {
+                  env: [
+                    {
+                      name: 'GF_SECURITY_ADMIN_USER',
+                      value: grafanaUser,
+                    },
+                    {
+                      name: 'GF_SECURITY_ADMIN_PASSWORD',
+                      value: grafanaPassword,
+                    },
+                  ],
+                }
+                for c in super.containers
+              ],
+            },
+          },
         },
       },
     },
