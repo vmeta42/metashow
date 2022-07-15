@@ -80,7 +80,7 @@ alertmanager:
       email_configs:
       - smarthost: "mail.21vianet.com:587"
         from: '{{ .Values.alertmanager.email.username }}'
-        to: 'zhang.hu5@21vianet.com,patrick.zhu@dyxnet.com,jasper.feng@dyxnet.com,wang.kun6@neolink.com'
+        to: 'zhang.hu5@21vianet.com,patrick.zhu@dyxnet.com,jasper.feng@dyxnet.com,wang.kun6@neolink.com,lou.jian@neolink.com'
         send_resolved: true
         auth_username: '{{ .Values.alertmanager.email.username }}'
         auth_password: '{{ .Values.alertmanager.email.password }}'
