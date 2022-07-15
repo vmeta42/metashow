@@ -1803,8 +1803,8 @@ data:
                 },
                 {
                     "current": {
-                        "text": "default",
-                        "value": "default"
+                        "text": "k8s",
+                        "value": "k8s"
                     },
                     "hide": 0,
                     "label": null,
