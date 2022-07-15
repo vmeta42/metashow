@@ -397,6 +397,14 @@ grafana:
     type: prometheus
     url: http://thanos-query-frontend:9090
     version: 1
+  - name: Alertmanager
+    type: alertmanager
+    url: http://alertmanager-operated:9093
+    access: proxy
+    jsonData:
+    # optionally
+    basicAuth: false
+    editable: false
   - name: Zabbix
     access: proxy
     orgId: 1
