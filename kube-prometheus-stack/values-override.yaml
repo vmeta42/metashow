@@ -402,6 +402,7 @@ grafana:
     url: http://alertmanager-operated:9093
     access: proxy
     jsonData:
+        implementation: prometheus
     # optionally
     basicAuth: false
     editable: false
