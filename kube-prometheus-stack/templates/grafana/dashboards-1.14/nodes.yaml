@@ -913,8 +913,8 @@ data:
             "list": [
                 {
                     "current": {
-                        "text": "Prometheus",
-                        "value": "Prometheus"
+                        "text": "k8s",
+                        "value": "k8s"
                     },
                     "hide": 0,
                     "label": null,
