@@ -30,6 +30,9 @@ alertmanager:
         - match:
             namespace: oa-prod
           receiver: dc-email
+        - match:
+            namespace: gitlab
+          receiver: support-email
       - match:
           cluster: dev
         receiver: 'null'
@@ -44,7 +47,7 @@ alertmanager:
       - match:
           cluster: bigdata-prod
         group_by: ['alertname', "namespace"]
-        receiver: dc-email
+        receiver: bigdata-email
     receivers:
     - name: 'null'
     - name: dc-email
@@ -52,6 +55,32 @@ alertmanager:
       - smarthost: "mail.21vianet.com:587"
         from: '{{ .Values.alertmanager.email.username }}'
         to: 'zhang.hu5@21vianet.com,patrick.zhu@dyxnet.com,jasper.feng@dyxnet.com'
+        send_resolved: true
+        auth_username: '{{ .Values.alertmanager.email.username }}'
+        auth_password: '{{ .Values.alertmanager.email.password }}'
+        require_tls: true
+        tls_config:
+          insecure_skip_verify: true
+        text: |-
+          {{ `{{template "email.text" . }}` }}
+    - name: support-email
+      email_configs:
+      - smarthost: "mail.21vianet.com:587"
+        from: '{{ .Values.alertmanager.email.username }}'
+        to: 'matthew.chen@dyxnet.com'
+        send_resolved: true
+        auth_username: '{{ .Values.alertmanager.email.username }}'
+        auth_password: '{{ .Values.alertmanager.email.password }}'
+        require_tls: true
+        tls_config:
+          insecure_skip_verify: true
+        text: |-
+          {{ `{{template "email.text" . }}` }}
+    - name: bigdata-email
+      email_configs:
+      - smarthost: "mail.21vianet.com:587"
+        from: '{{ .Values.alertmanager.email.username }}'
+        to: 'zhang.hu5@21vianet.com,patrick.zhu@dyxnet.com,jasper.feng@dyxnet.com,wang.kun6@neolink.com'
         send_resolved: true
         auth_username: '{{ .Values.alertmanager.email.username }}'
         auth_password: '{{ .Values.alertmanager.email.password }}'
