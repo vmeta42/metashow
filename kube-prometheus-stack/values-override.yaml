@@ -231,8 +231,10 @@ grafana:
       skip_verify: true
       from_address: "gitinfo@21vianet.com"
     alerting:
-      enabled: true
+      enabled: false
       execute_alerts: true
+    unified_alerting:
+      enabled: true
     auth.ldap:
       enabled: true
       allow_sign_up: true
