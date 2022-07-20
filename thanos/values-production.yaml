@@ -29,14 +29,14 @@ query:
     enabled: false
   stores: ["prometheus-k8s-0.prometheus-operated.monitoring:10901", "prometheus-k8s-1.prometheus-operated.monitoring:10901","172.22.150.25:30438","172.22.150.25:32525", "172.23.50.25:31508", "172.23.50.25:30316", "172.22.240.10:31219", "172.22.240.10:31167", "thanos-storegateway:10901"]
   sdConfig: ""
-  replicaCount: 1
+  replicaCount: 2
   resources:
     limits:
       cpu: 4
-      memory: 16Gi
+      memory: 8Gi
     requests:
       cpu: 4
-      memory: 16Gi
+      memory: 8Gi
   grpc:
     server:
       tls:
@@ -49,14 +49,18 @@ query:
 
 queryFrontend:
   enabled: true
-  config: ""
-  replicaCount: 1
+  config: |
+    type: IN-MEMORY
+    config:
+      max_size: "4096MB"
+  extraFlags: ["--query-range.max-query-length=366d", "--query-frontend.log-queries-longer-than=300s"]
+  replicaCount: 2
   resources:
     limits:
-      cpu: 4
+      cpu: 1
       memory: 8Gi
     requests:
-      cpu: 4
+      cpu: 1
       memory: 8Gi
   service:
     type: ClusterIP
