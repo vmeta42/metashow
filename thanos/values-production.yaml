@@ -53,7 +53,7 @@ queryFrontend:
     type: IN-MEMORY
     config:
       max_size: "4096MB"
-  extraFlags: ["--query-range.max-query-length=366d", "--query-frontend.log-queries-longer-than=300s"]
+  extraFlags: ["--query-range.max-query-length=8784h", "--query-frontend.log-queries-longer-than=300s"]
   replicaCount: 2
   resources:
     limits:
