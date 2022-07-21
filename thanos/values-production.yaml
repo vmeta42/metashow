@@ -134,9 +134,52 @@ queryFrontend:
     pathType: Prefix
 
 bucketweb:
-  enabled: false
+  enabled: true
+  resources:
+    limits:
+      cpu: 500m
+      memory: 8Gi
+    requests:
+      cpu: 500m
+      memory: 8Gi
+  ingress:
+    enabled: true
+    hostname: thanos-bucketweb-monitor.dev.21vianet.com
+    ingressClassName: "traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+    tls: false
+    path: /
+    pathType: Prefix
 compactor:
-  enabled: false
+  enabled: true
+  retentionResolutionRaw: 180d
+  retentionResolution5m: 1y
+  retentionResolution1h: 10y
+  resources:
+    limits:
+      cpu: 1
+      memory: 16Gi
+    requests:
+      cpu: 1
+      memory: 16Gi
+  ingress:
+    enabled: true
+    hostname: thanos-compactor-monitor.dev.21vianet.com
+    ingressClassName: "traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/buffering: |
+        maxRequestBodyBytes = 0
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+    tls: false
+    path: /
+    pathType: Prefix
+  persistence:
+    enabled: true
+    storageClass: "csi-rbd-sc"
+    size: 50Gi
 storegateway:
   enabled: true
   config: ""
@@ -303,7 +346,7 @@ minio:
     mountPath: /data
     accessModes:
       - ReadWriteOnce
-    size: 600Gi
+    size: 800Gi
   volumePermissions:
     enabled: true
     image:
