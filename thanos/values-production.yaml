@@ -186,10 +186,10 @@ storegateway:
   replicaCount: 1
   resources:
     limits:
-      cpu: 4
+      cpu: 2
       memory: 32Gi
     requests:
-      cpu: 4
+      cpu: 2
       memory: 32Gi
   service:
     type: ClusterIP
@@ -203,7 +203,14 @@ storegateway:
   ingress:
     enabled: false
   sharded:
-    enabled: false
+    enabled: true
+    timePartitioning:
+      - min: "-6w"
+        max: "-1m"
+      - min: "-12w"
+        max: "-6w"
+      - min: "-18w"
+        max: "-12w"
 ruler:
   enabled: true
   replicaLabel: replica
@@ -346,7 +353,7 @@ minio:
     mountPath: /data
     accessModes:
       - ReadWriteOnce
-    size: 800Gi
+    size: 1500Gi
   volumePermissions:
     enabled: true
     image:
