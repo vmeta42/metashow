@@ -27,7 +27,7 @@ query:
   replicaLabel: [prometheus_replica]
   dnsDiscovery:
     enabled: false
-  stores: ["prometheus-k8s-0.prometheus-operated.monitoring:10901", "prometheus-k8s-1.prometheus-operated.monitoring:10901","172.22.150.25:30438","172.22.150.25:32525", "172.23.50.25:31508", "172.23.50.25:30316", "172.22.240.10:31219", "172.22.240.10:31167", "thanos-storegateway:10901"]
+  stores: ["prometheus-k8s-0.prometheus-operated.monitoring:10901", "prometheus-k8s-1.prometheus-operated.monitoring:10901","172.22.150.25:30438","172.22.150.25:32525", "172.23.50.25:31508", "172.23.50.25:30316", "172.22.240.10:31219", "172.22.240.10:31167", "thanos-storegateway-0:10901", "thanos-storegateway-1:10901", "thanos-storegateway-2:10901"]
   sdConfig: ""
   replicaCount: 2
   resources:
