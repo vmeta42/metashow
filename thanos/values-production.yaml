@@ -186,10 +186,10 @@ storegateway:
   replicaCount: 1
   resources:
     limits:
-      cpu: 2
+      cpu: 4
       memory: 32Gi
     requests:
-      cpu: 2
+      cpu: 4
       memory: 32Gi
   service:
     type: ClusterIP
@@ -205,12 +205,12 @@ storegateway:
   sharded:
     enabled: true
     timePartitioning:
-      - min: "-6w"
+      - min: "-4w"
         max: "-1m"
+      - min: "-8w"
+        max: "-4w"
       - min: "-12w"
-        max: "-6w"
-      - min: "-18w"
-        max: "-12w"
+        max: "-8w"
 ruler:
   enabled: true
   replicaLabel: replica
