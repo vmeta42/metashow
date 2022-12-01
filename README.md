@@ -22,7 +22,7 @@ TODO
 
 We deploy the monitor framework base on the following architecture.
 
-![remote-write](img/remote-write2.png)
+![remote-write](img/remote-write2.jpg)
 
 1. Each k8s contains promethues+grafana locally, for example: dev k8s、b28 k8s、m6 k8s.
 2. Admin cluster contains the global prometheus+grafana.  The global prometheus contains metric for openstack、ceph、zabbix.
