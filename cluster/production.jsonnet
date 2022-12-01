@@ -1,16 +1,16 @@
-local minioSecret=std.extVar("minioSecretKey");
-local bindPassword=std.extVar("bindPassword");
-local grafanaUser=std.extVar("grafanaUser");
-local grafanaPassword=std.extVar("grafanaPassword");
-local registry="harbor.chanty.21vianet.com/library/";
-local grafanaHost='monitor.chanty.21vianet.com';
-local grafanaUrl='https://'+grafanaHost+'/';
-local grafanaKey = std.extVar("grafanaKey");
-local grafanaCert = std.extVar("grafanaCert");
-local alertmanagerHost='alertmanager.chanty.21vianet.com';
-local alertmanagerUrl='https://' + alertmanagerHost;
-local alertmanagerCert = std.extVar("alertmanagerCert");
-local alertmanagerKey = std.extVar("alertmanagerKey");
+local minioSecret = std.extVar('minioSecretKey');
+local bindPassword = std.extVar('bindPassword');
+local grafanaUser = std.extVar('grafanaUser');
+local grafanaPassword = std.extVar('grafanaPassword');
+local registry = 'harbor.chanty.21vianet.com/library/';
+local grafanaHost = 'monitor.chanty.21vianet.com';
+local grafanaUrl = 'https://' + grafanaHost + '/';
+local grafanaKey = std.extVar('grafanaKey');
+local grafanaCert = std.extVar('grafanaCert');
+local alertmanagerHost = 'alertmanager.chanty.21vianet.com';
+local alertmanagerUrl = 'https://' + alertmanagerHost;
+local alertmanagerCert = std.extVar('alertmanagerCert');
+local alertmanagerKey = std.extVar('alertmanagerKey');
 
 local kp =
   (import 'kube-prometheus/main.libsonnet') +
@@ -49,16 +49,16 @@ local kp =
           Cert: alertmanagerCert,
           Key: alertmanagerKey,
         },
-        grafana+:{
+        grafana+: {
           Host: grafanaHost,
           Cert: grafanaCert,
-          Key:  grafanaKey,
+          Key: grafanaKey,
         },
       },
 
       prometheus+:: {
-        storage: { volumeClaimTemplate: { spec: { storageClassName: 'csi-rbd-sc', resources: { requests: { storage: '40Gi'}}}}},
-        thanos: { image: registry + 'thanos:quay-v0.23.1', objectStorageConfig: {key: 'object-store.yaml', name: 'minio'}, version: 'v0.23.1'},
+        storage: { volumeClaimTemplate: { spec: { storageClassName: 'csi-rbd-sc', resources: { requests: { storage: '40Gi' } } } } },
+        thanos: { image: registry + 'thanos:quay-v0.23.1', objectStorageConfig: { key: 'object-store.yaml', name: 'minio' }, version: 'v0.23.1' },
         externalLabels+: {
           cluster: 'production',
           replicas: '2',
@@ -101,12 +101,12 @@ local kp =
             server+: {
               root_url: grafanaUrl,
             },
-            "auth.ldap"+: {
+            'auth.ldap'+: {
               enabled: true,
             },
           },
         },
-        sc: "csi-cephfs-sc",
+        sc: 'csi-cephfs-sc',
         ldap: |||
           verbose_logging = true
 
@@ -169,24 +169,24 @@ local kp =
     },
   };
 
-[ kp.kubePrometheus.namespace ] +
+[kp.kubePrometheus.namespace] +
 [
   kp.prometheusOperator[name]
   for name in std.filter((function(name) name != 'serviceMonitor' && name != 'prometheusRule'), std.objectFields(kp.prometheusOperator))
 ] +
-[ kp.prometheusOperator.serviceMonitor ] +
-[ kp.prometheusOperator.prometheusRule ] +
-[ kp.kubePrometheus.prometheusRule ] +
-[ kp.alertmanager[name] for name in std.objectFields(kp.alertmanager) ] +
-[ kp.blackboxExporter[name] for name in std.objectFields(kp.blackboxExporter) ] +
-[ kp.grafana[name] for name in std.objectFields(kp.grafana) ] +
-[ kp.kubeStateMetrics[name] for name in std.objectFields(kp.kubeStateMetrics) ] +
-[ kp.kubernetesControlPlane[name] for name in std.objectFields(kp.kubernetesControlPlane) ] +
-[ kp.nodeExporter[name] for name in std.objectFields(kp.nodeExporter) ] +
-[ kp.prometheus[name]
-  for name in std.filter((function(name) name != 'thanosSideCarEachService'), std.objectFields(kp.prometheus)) 
+[kp.prometheusOperator.serviceMonitor] +
+[kp.prometheusOperator.prometheusRule] +
+[kp.kubePrometheus.prometheusRule] +
+[kp.alertmanager[name] for name in std.objectFields(kp.alertmanager)] +
+[kp.blackboxExporter[name] for name in std.objectFields(kp.blackboxExporter)] +
+[kp.grafana[name] for name in std.objectFields(kp.grafana)] +
+[kp.kubeStateMetrics[name] for name in std.objectFields(kp.kubeStateMetrics)] +
+[kp.kubernetesControlPlane[name] for name in std.objectFields(kp.kubernetesControlPlane)] +
+[kp.nodeExporter[name] for name in std.objectFields(kp.nodeExporter)] +
+[
+  kp.prometheus[name]
+  for name in std.filter((function(name) name != 'thanosSideCarEachService'), std.objectFields(kp.prometheus))
 ] +
-[ kp.prometheus.thanosSideCarEachService[name] for name in std.objectFields(kp.prometheus.thanosSideCarEachService) ] +
-[ kp.prometheusAdapter[name] for name in std.objectFields(kp.prometheusAdapter) ] +
-[ kp.ingress[name] for name in std.objectFields(kp.ingress) ]
-
+[kp.prometheus.thanosSideCarEachService[name] for name in std.objectFields(kp.prometheus.thanosSideCarEachService)] +
+[kp.prometheusAdapter[name] for name in std.objectFields(kp.prometheusAdapter)] +
+[kp.ingress[name] for name in std.objectFields(kp.ingress)]

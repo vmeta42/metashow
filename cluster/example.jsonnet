@@ -1,7 +1,7 @@
-local minioSecret = std.extVar('minioSecretKey');
-local bindPassword = std.extVar('bindPassword');
-local grafanaUser = std.extVar('grafanaUser');
-local grafanaPassword = std.extVar('grafanaPassword');
+local minioSecret = 'secret';
+local bindPassword = 'test';
+local grafanaUser = 'admin';
+local grafanaPassword = 'password';
 local registry = 'harbor.dev.21vianet.com/library/';
 local grafanaHost = 'grafana.dev.21vianet.com';
 local grafanaUrl = 'https://' + grafanaHost + '/';
@@ -257,24 +257,24 @@ local kp =
     },
   };
 
-[kp.kubePrometheus.namespace] +
-[
-  kp.prometheusOperator[name]
+{'setup/0namespace-namespace': kp.kubePrometheus.namespace } +
+{
+  ['setup/prometheus-operator-' + name]: kp.prometheusOperator[name]
   for name in std.filter((function(name) name != 'serviceMonitor' && name != 'prometheusRule' && !std.startsWith(name, '0')), std.objectFields(kp.prometheusOperator))
-] +
-[kp.prometheusOperator.serviceMonitor] +
-[kp.prometheusOperator.prometheusRule] +
-[kp.kubePrometheus.prometheusRule] +
-[kp.alertmanager[name] for name in std.objectFields(kp.alertmanager)] +
-[kp.blackboxExporter[name] for name in std.objectFields(kp.blackboxExporter)] +
-[kp.grafana[name] for name in std.objectFields(kp.grafana)] +
-[kp.kubeStateMetrics[name] for name in std.objectFields(kp.kubeStateMetrics)] +
-[kp.kubernetesControlPlane[name] for name in std.objectFields(kp.kubernetesControlPlane)] +
-[kp.nodeExporter[name] for name in std.objectFields(kp.nodeExporter)] +
-[
-  kp.prometheus[name]
+} +
+{ 'prometheus-operator-serviceMonitor': kp.prometheusOperator.serviceMonitor} +
+{ 'prometheus-operator-prometheusRule': kp.prometheusOperator.prometheusRule} +
+{ 'kube-prometheus-prometheusRule': kp.kubePrometheus.prometheusRule} +
+{ ['alertmanager-' + name]: kp.alertmanager[name] for name in std.objectFields(kp.alertmanager)} +
+{ ['blackbox-exporter-' + name]: kp.blackboxExporter[name] for name in std.objectFields(kp.blackboxExporter)} +
+{ ['grafana-' + name]: kp.grafana[name] for name in std.objectFields(kp.grafana)} +
+{ ['kube-state-metrics-' + name]: kp.kubeStateMetrics[name] for name in std.objectFields(kp.kubeStateMetrics)} +
+{ ['kubernetes-' + name]: kp.kubernetesControlPlane[name] for name in std.objectFields(kp.kubernetesControlPlane)} +
+{ ['node-exporter-' + name]: kp.nodeExporter[name] for name in std.objectFields(kp.nodeExporter)} +
+{
+   ['prometheus-' + name]: kp.prometheus[name]
   for name in std.filter((function(name) name != 'thanosSideCarEachService'), std.objectFields(kp.prometheus))
-] +
-[kp.prometheus.thanosSideCarEachService[name] for name in std.objectFields(kp.prometheus.thanosSideCarEachService)] +
-[kp.prometheusAdapter[name] for name in std.objectFields(kp.prometheusAdapter)] +
-[kp.ingress[name] for name in std.objectFields(kp.ingress)]
+} +
+{ ['thanos-sidecar-' + name]: kp.prometheus.thanosSideCarEachService[name] for name in std.objectFields(kp.prometheus.thanosSideCarEachService)} +
+{ ['prometheus-adapter-' + name]: kp.prometheusAdapter[name] for name in std.objectFields(kp.prometheusAdapter)} +
+{ ['ingress-' + name]: kp.ingress[name] for name in std.objectFields(kp.ingress)}
