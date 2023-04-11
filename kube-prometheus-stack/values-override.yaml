@@ -316,6 +316,14 @@ grafana:
         editable: true
         options:
           path: /var/lib/grafana/dashboards/zabbix
+      - name: 'thanos'
+        orgId: 1
+        folder: 'Thanos'
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/thanos
 
   dashboards:
     zabbix:
@@ -367,7 +375,19 @@ grafana:
         file: dashboards/openstack/openstack-exporter.json
       libvirt:
         file: dashboards/openstack/libvirt.json
-
+    thanos:
+      overview:
+        file: dashboards/thanos/overview.json
+      query:
+        file: dashboards/thanos/query.json
+      compact:
+        file: dashboards/thanos/compact.json
+      bucket_replicate:
+        file: dashboards/thanos/bucket_replicate.json
+      rule:
+        file: dashboards/thanos/rule.json
+      store:
+        file: dashboards/thanos/store.json
 
   ingress:
     enabled: true
