@@ -336,6 +336,32 @@ grafana:
         file: dashboards/ceph/pools.json
       node-exporter:
         file: dashboards/ceph/node-exporter.json
+      ## 添加n版本
+      ceph-cluster:
+        file: dashboards/ceph2/ceph-cluster.json
+      ceph-overview:
+        file: dashboards/ceph2/ceph-overview.json
+      ceph-details:
+        file: dashboards/ceph2/ceph-details.json
+      host-overview:
+        file: dashboards/ceph2/host-overview.json
+      osd-overview:
+        file: dashboards/ceph2/osd-overview.json
+      pool-detail:
+        file: dashboards/ceph2/pool-detail.json
+      pool-overview:
+        file: dashboards/ceph2/pool-overview.json
+      radosgw-detail:
+        file: dashboards/ceph2/radosgw-detail.json
+      radosgw-overview:
+        file: dashboards/ceph2/radosgw-overview.json
+      radosgw-sync-overview:
+        file: dashboards/ceph2/radosgw-sync-overvie.json
+      rbd-details:
+        file: dashboards/ceph2/rbd-details.json
+      rbd-overview:
+        file: dashboards/ceph2/rbd-overview.json
+
     openstack:
       cluster:
         file: dashboards/openstack/openstack-exporter.json
@@ -360,7 +386,7 @@ grafana:
       - monitor.dev.21vianet.com
   image:
     repository: harbor.dev.21vianet.com/library/grafana
-    tag: 8.3.2
+    tag: 8.3.2-p
   sidecar:
     image:
       repository: harbor.dev.21vianet.com/library/k8s-sidecar
